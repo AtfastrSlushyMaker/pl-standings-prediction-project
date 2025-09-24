@@ -38,9 +38,7 @@ pl-standings-prediction-project/
 │   └── predictions.ipynb          # Final predictions and evaluation
 │
 ├── scripts/                       # Python scripts for automation
-│   ├── data_loader.py            # Data loading utilities
-│   ├── preprocessor.py           # Data preprocessing functions
-│   └── model_utils.py            # Model training and evaluation utilities
+│   ├── combine_datasets.py            # Combies raw datasets into one dataset
 │
 ├── models/                        # Saved trained models
 ├── results/                       # Model outputs and predictions
@@ -146,17 +144,6 @@ Final step to:
 - 📊 Evaluate model performance
 - 📈 Visualize predicted vs actual results
 
-### 🔄 Alternative: Run All Scripts Programmatically
-
-```bash
-python scripts/data_loader.py
-python scripts/preprocessor.py
-python scripts/model_utils.py
-```
-
-## 🤝 Contributing
-
-We welcome contributions to improve this project! Here's how you can contribute:
 
 ### 🛠️ Development Setup
 

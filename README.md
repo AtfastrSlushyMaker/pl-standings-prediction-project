@@ -38,7 +38,7 @@ pl-standings-prediction-project/
 │   └── predictions.ipynb          # Final predictions and evaluation
 │
 ├── scripts/                       # Python scripts for automation
-│   ├── combine_datasets.py            # Combies raw datasets into one dataset
+│   ├── combine_datasets.py        # Combies raw datasets into one dataset
 │
 ├── models/                        # Saved trained models
 ├── results/                       # Model outputs and predictions

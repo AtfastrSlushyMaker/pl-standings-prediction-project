@@ -1,147 +1,197 @@
-# Processed Data
+# 🎯 Processed Data - Ready for ML
 
-This folder contains cleaned and preprocessed Premier League match data ready for machine learning models.
+This folder contains **cleaned and preprocessed** Premier League match data, optimized for machine learning models.
 
-## Files
+---
 
-### `X_features.csv`
-**Features matrix for model training**
+## 📁 Files Overview
 
-Contains all input features after preprocessing:
-- **Match statistics**: Goals (FTHG, FTAG), Shots (HS, AS), Shots on Target (HST, AST), Fouls (HF, AF), Corners (HC, AC), Cards (HY, AY, HR, AR)
-- **Encoded teams**: `HomeTeam_le`, `AwayTeam_le` (label-encoded team identifiers for tree-based models)
-- **Encoded season**: `Season_encoded` (label-encoded season identifier)
-- **Date information**: `Date` column for temporal sorting and analysis
+### 📦 `processed_premier_league_combined.csv`
+**Complete processed dataset ready for modeling**
 
-**Shape**: ~10,000+ rows × 20-25 columns (depends on encoding strategy)
+This file contains **both original and encoded columns** for maximum flexibility:
 
-### `y_target.csv`
-**Target variable for prediction**
+**🔤 Original Columns** (for display and interpretation):
+- 🏆 **Season** - Season identifier (e.g., "2023-24")
+- 📅 **Date** - Match date (YYYY-MM-DD)
+- 🏠 **HomeTeam** - Home team name (e.g., "Arsenal", "Liverpool")
+- ✈️ **AwayTeam** - Away team name
+- 🏁 **FTR** - Full Time Result (H/D/A)
 
-Contains the match outcome to predict:
-- **FTR_encoded**: Full-time result encoded as integers
-  - `0` = Away win (A)
-  - `1` = Draw (D)
-  - `2` = Home win (H)
+**🔢 Encoded Columns** (for model training):
+- **Season_encoded** - Numeric season encoding
+- **HomeTeam_le** - Label-encoded home team (0 to ~50)
+- **AwayTeam_le** - Label-encoded away team (0 to ~50)
+- **FTR_encoded** - Target variable (0=Away, 1=Draw, 2=Home)
 
-**Shape**: ~10,000+ rows × 1 column
+**📊 Match Statistics** (raw values, ready for trees):
+- Goals: FTHG, FTAG
+- Shots: HS, AS, HST, AST
+- Fouls: HF, AF
+- Corners: HC, AC
+- Cards: HY, AY, HR, AR
 
-### `processed premier_league_combined.csv`
-**Full processed dataset**
+**📏 Shape**: ~10,000+ rows × 25-30 columns
 
-Combined dataset with all features and target in a single file for convenience. Contains all columns from `X_features.csv` plus the target column `FTR_encoded`.
+💡 **Why both?** Original columns let you display team names and interpret results. Encoded columns are used for training machine learning models.
 
-**Shape**: ~10,000+ rows × 25-30 columns
+---
 
-## Field Descriptions
+## 📋 Field Descriptions
 
-### Match Identifiers
-- **Season** - Season identifier (e.g., "2023-24")
-- **Date** - Match date in YYYY-MM-DD format
+### 🔤 Original Columns (Preserved for Reference)
+
+#### 🆔 Match Identifiers
+- **Season** - 🏆 Season identifier (e.g., "2023-24")
+- **Date** - 📅 Match date in YYYY-MM-DD format
+
+#### 👥 Team Names
+- **HomeTeam** - 🏠 Home team name (e.g., "Arsenal", "Chelsea", "Liverpool")
+- **AwayTeam** - ✈️ Away team name
+
+#### 🎯 Match Outcome
+- **FTR** - 🏁 Full Time Result
+  - `H` = 🔴 Home win
+  - `D` = 🤝 Draw
+  - `A` = 🔵 Away win
+
+---
+
+### 🔢 Encoded Columns (For Model Training)
+
+#### 📊 Encoded Identifiers
 - **Season_encoded** - Numeric encoding of seasons (0 to n, ordered chronologically)
 
-### Team Information (Encoded)
-- **HomeTeam_le** - Home team encoded as integer (0 to ~50)
-- **AwayTeam_le** - Away team encoded as integer (0 to ~50)
+#### 🤖 Encoded Teams
+- **HomeTeam_le** - 🏠 Home team label-encoded (0 to ~50)
+- **AwayTeam_le** - ✈️ Away team label-encoded (0 to ~50)
 
-*Note: Original team names (Arsenal, Chelsea, Liverpool, etc.) were label-encoded for tree models. See the notebook for the encoder mapping.*
+💡 *Mapping: Use the original HomeTeam/AwayTeam columns to see which number corresponds to which team*
 
-### Match Outcome (Target Variable)
-- **FTR_encoded** - Full Time Result (target for prediction)
-  - `0` = Away team wins
-  - `1` = Draw
-  - `2` = Home team wins
+#### 🎯 Encoded Target
+- **FTR_encoded** - Full Time Result encoded for ML models
+  - `0` = 🔵 Away team wins
+  - `1` = 🤝 Draw
+  - `2` = 🔴 Home team wins
 
-### Match Statistics - Goals
+---
+
+### ⚽ Match Statistics (Raw Values)
 - **FTHG** - Full Time Home Goals
 - **FTAG** - Full Time Away Goals
 
-### Match Statistics - Shots
+### 🎯 Match Statistics - Shots
 - **HS** - Home Shots
 - **AS** - Away Shots
-- **HST** - Home Shots on Target
-- **AST** - Away Shots on Target
+- **HST** - 🔥 Home Shots on Target
+- **AST** - 🔥 Away Shots on Target
 
-### Match Statistics - Fouls
+### ⚠️ Match Statistics - Fouls
 - **HF** - Home Fouls Committed
 - **AF** - Away Fouls Committed
 
-### Match Statistics - Corners
+### 🚩 Match Statistics - Corners
 - **HC** - Home Corners
 - **AC** - Away Corners
 
-### Match Statistics - Cards
-- **HY** - Home Yellow Cards
-- **AY** - Away Yellow Cards
-- **HR** - Home Red Cards
-- **AR** - Away Red Cards
+### 📇 Match Statistics - Cards
+- **HY** - 🟡 Home Yellow Cards
+- **AY** - 🟡 Away Yellow Cards
+- **HR** - 🟥 Home Red Cards
+- **AR** - 🟥 Away Red Cards
 
-### Removed Columns
+### 🗑️ Removed Columns
 The following columns from the raw data were removed during preprocessing:
-- **HTHG, HTAG, HTR** - Half-time statistics (not needed for full-time prediction)
-- **Referee** - Referee name (high cardinality, minimal predictive value)
-- **SourceFile** - Data provenance metadata (not needed for modeling)
+- **HTHG, HTAG, HTR** - ⏱️ Half-time statistics (not needed for full-time prediction)
+- **Referee** - 👨‍⚖️ Referee name (high cardinality, minimal predictive value)
+- **SourceFile** - 📁 Data provenance metadata (not needed for modeling)
 
-## Data Preprocessing Steps
+---
+
+---
+
+## 🔧 Data Preprocessing Steps
 
 These files were generated by `notebooks/data_preparation.ipynb` with the following steps:
 
-1. **Load raw data** from `data/raw/combined/premier_league_combined.csv`
-2. **Filter complete seasons** - Removed seasons with missing performance statistics (pre-2000 seasons)
-3. **Data quality checks** - Verified no missing values in key columns
-4. **Remove unused columns** - Dropped half-time stats (HTHG, HTAG, HTR), Referee, and SourceFile
-5. **Encode categorical variables**:
+1. **📥 Load raw data** from `data/raw/combined/premier_league_combined.csv`
+2. **🔍 Filter complete seasons** - Removed seasons with missing performance statistics (pre-2000 seasons)
+3. **✅ Data quality checks** - Verified no missing values in key columns
+4. **🗑️ Remove unused columns** - Dropped half-time stats (HTHG, HTAG, HTR), Referee, and SourceFile
+5. **🔢 Encode categorical variables**:
    - FTR (target) → `FTR_encoded` (0=Away, 1=Draw, 2=Home)
    - Season → `Season_encoded` (ordinal encoding)
    - Teams → `HomeTeam_le`, `AwayTeam_le` (label encoding for tree models)
-6. **Standardization** - Skipped for tree-based models (configured via `MODEL_FAMILY='tree'`)
+6. **📊 Standardization** - Skipped for tree-based models (configured via `MODEL_FAMILY='tree'`)
 
-## Model Configuration
+---
 
-The preprocessing was optimized for **decision tree-based models** (DecisionTree, RandomForest, GradientBoosting):
-- **Encoding**: Label encoding for teams (avoids 90+ one-hot columns)
-- **Scaling**: None (trees are scale-invariant)
-- **Features**: Raw match statistics preserved
+## ⚙️ Model Configuration
 
-To use with **linear models** (LogisticRegression, SVM), re-run preprocessing with `MODEL_FAMILY='linear'` to enable:
-- One-hot encoding for teams
-- Z-score standardization for numeric features
+The preprocessing was optimized for **🌲 decision tree-based models** (DecisionTree, RandomForest, GradientBoosting):
+- **🔢 Encoding**: Label encoding for teams (avoids 90+ one-hot columns)
+- **📏 Scaling**: None (trees are scale-invariant)
+- **📊 Features**: Raw match statistics preserved
 
-## Usage
+To use with **📈 linear models** (LogisticRegression, SVM), re-run preprocessing with `MODEL_FAMILY='linear'` to enable:
+- ✅ One-hot encoding for teams
+- ✅ Z-score standardization for numeric features
+
+---
+
+## 💻 Usage
 
 ```python
 import pandas as pd
 
-# Load features and target
-X = pd.read_csv('data/processed/X_features.csv')
-y = pd.read_csv('data/processed/y_target.csv')
+# Load the processed dataset
+df = pd.read_csv('data/processed/processed_premier_league_combined.csv')
 
-# Or load the combined dataset
-df = pd.read_csv('data/processed/processed premier_league_combined.csv')
+# Use encoded columns for modeling
+X = df[['Season_encoded', 'HomeTeam_le', 'AwayTeam_le', 
+        'FTHG', 'FTAG', 'HS', 'AS', 'HST', 'AST', 
+        'HF', 'AF', 'HC', 'AC', 'HY', 'AY', 'HR', 'AR']]
+y = df['FTR_encoded']
+
+# Use original columns for display/interpretation
+print(f"Match: {df['HomeTeam'][0]} vs {df['AwayTeam'][0]}")
+print(f"Result: {df['FTR'][0]}")
 ```
 
-## Data Characteristics
+---
 
-- **Time range**: Seasons 2000-01 through 2024-25 (complete seasons only)
-- **Matches**: ~10,000+ Premier League matches
-- **Target distribution**: 
-  - Home wins (~46%)
-  - Draws (~26%)
-  - Away wins (~28%)
-- **No missing values**: All rows have complete data
-- **Pre-match features only**: No data leakage from match outcomes
+## 📊 Data Characteristics
 
-## Next Steps
+- **📅 Time range**: Seasons 2000-01 through 2024-25 (complete seasons only)
+- **⚽ Matches**: ~10,000+ Premier League matches
+- **🎯 Target distribution**: 
+  - 🔴 Home wins (~46%)
+  - 🤝 Draws (~26%)
+  - 🔵 Away wins (~28%)
+- **✅ No missing values**: All rows have complete data
+- **🔒 Pre-match features only**: No data leakage from match outcomes
 
-Use these files for:
-1. **Train/test splitting** - Split by season (older seasons for training, recent for testing)
-2. **Model training** - Decision trees, Random Forest, or other algorithms
-3. **Standings prediction** - Predict match outcomes to simulate league standings
+---
 
-## Notes
+## 🚀 Next Steps
 
-- **Date column preserved**: Use for temporal analysis and season-aware splits
-- **Original categories available**: FTR, HomeTeam, AwayTeam can be recovered using the encoders saved in the notebook
-- **No feature engineering applied**: Goal differences, rolling averages, etc. were intentionally excluded to avoid data leakage for pre-match prediction
+Use this file for:
+1. **✂️ Train/test splitting** - Split by season (older seasons for training, recent for testing)
+2. **🤖 Model training** - Decision trees, Random Forest, or other algorithms
+3. **🏆 Standings prediction** - Predict match outcomes to simulate league standings
 
-For details on preprocessing logic and to regenerate these files, see `notebooks/data_preparation.ipynb`.
+---
+
+## 💡 Important Notes
+
+- **✅ Both original and encoded columns included**: Use encoded for training, original for interpretation
+- **📅 Date column preserved**: Use for temporal analysis and season-aware splits
+- **🔄 Easy reverse mapping**: Match encoded IDs back to team names using the original columns in the same row
+- **🚫 No feature engineering applied**: Goal differences, rolling averages, etc. were intentionally excluded to avoid data leakage for pre-match prediction
+- **🎯 Train/test split**: Do this in your modeling notebook, not here
+
+---
+
+## 📚 More Information
+
+For details on preprocessing logic and to regenerate this file, see `notebooks/data_preparation.ipynb`.

@@ -188,7 +188,6 @@ Use this file for:
 - **📅 Date column preserved**: Use for temporal analysis and season-aware splits
 - **🔄 Easy reverse mapping**: Match encoded IDs back to team names using the original columns in the same row
 - **🚫 No feature engineering applied**: Goal differences, rolling averages, etc. were intentionally excluded to avoid data leakage for pre-match prediction
-- **🎯 Train/test split**: Do this in your modeling notebook, not here
 
 ---
 

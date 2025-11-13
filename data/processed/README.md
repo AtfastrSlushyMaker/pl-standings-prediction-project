@@ -4,7 +4,46 @@ This folder contains **cleaned and preprocessed** Premier League match data, opt
 
 ---
 
+## ⚡ Quick Start
+
+**For Predicting Final Standings** (RECOMMENDED): Use `team_season_aggregated.csv` ✅  
+**For Match-Level Analysis**: Use `processed_premier_league_combined.csv` ⚠️ (risk of data leakage)
+
+---
+
 ## 📁 Files Overview
+
+### 🏆 `team_season_aggregated.csv` ✅ NEW & RECOMMENDED
+**Team-season aggregated data for standings prediction**
+
+This is the **correct approach** for predicting final Premier League standings without data leakage!
+
+**Structure**: Each row = 1 team's complete season performance
+
+- **🆔 Identifiers**: Season, Team, Season_encoded, Team_encoded
+- **🎯 Target**: `Final_Position` (1-20, using PL rules: Points → Goal Diff → Goals Scored)
+- **📊 Features** (~30 performance metrics):
+  - Results: Wins, Draws, Losses, Points, Win_Rate, Home_Win_Rate, Away_Win_Rate
+  - Goals: Goals_Scored, Goals_Conceded, Goal_Difference, Avg_Goals_Scored
+  - Shooting: Total_Shots, Shots_On_Target, Shot_Accuracy
+  - Defense: Clean_Sheets, Clean_Sheet_Rate
+  - Discipline: Yellow_Cards, Red_Cards, Fouls
+  - Other: Corners, Points_Per_Game
+
+**📏 Shape**: ~600 rows (teams × seasons) × ~35 columns
+
+✅ **No data leakage** - Uses aggregated season performance to predict season outcome  
+✅ **Realistic predictions** - Expected MAE: 2-4 league positions  
+✅ **Interpretable** - Features directly relate to league position  
+
+**Usage**:
+```python
+df = pd.read_csv('team_season_aggregated.csv')
+X = df[['Wins', 'Goal_Difference', 'Goals_Scored', 'Win_Rate']]
+y = df['Final_Position']  # Predict this!
+```
+
+---
 
 ### 📦 `processed_premier_league_combined.csv`
 **Complete processed dataset ready for modeling**

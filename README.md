@@ -27,30 +27,51 @@ The dataset includes:
 ```text
 pl-standings-prediction-project/
 │
-├── data/                          # Raw and processed datasets
-│   ├── raw/                       # Original datasets from Football Datasets
-│   └── processed/                 # Cleaned and preprocessed data
+├── data/                                    # Datasets
+│   ├── raw/                                 # Original datasets
+│   │   ├── combined/
+│   │   │   ├── premier_league_combined.csv # All seasons combined
+│   │   │   └── README.md
+│   │   └── uncombined/                     # Individual season files
+│   │       ├── season-2324.csv
+│   │       ├── season-2425.csv
+│   │       └── ...
+│   │
+│   └── processed/                           # Cleaned datasets
+│       ├── team_season_aggregated.csv      # For standings prediction ⭐
+│       ├── processed_premier_league_combined.csv # For match prediction
+│       └── README.md                        # Dataset documentation
 │
-├── notebooks/                     # Jupyter notebooks for analysis and modeling
-│   ├── exploratory_analysis.ipynb # Data exploration and visualization
-│   ├── data_preprocessing.ipynb   # Data cleaning and feature engineering
-│   ├── model_training.ipynb       # Machine learning model development
-│   └── predictions.ipynb          # Final predictions and evaluation
+├── notebooks/                               # Jupyter notebooks
+│   ├── algorithms/                          # Individual algorithm implementations
+│   │   └── random_forest/                   # Random Forest model
+│   │       ├── random_forest.ipynb          # Model notebook
+│   │       └── README.md                    # Results & documentation
+│   │   # Future: xgboost/, svm/, decision_tree/, k_means/, dbscan/
+│   │
+│   ├── exploratory_analysis.ipynb          # Data exploration
+│   └── data_preprocessing.ipynb            # Data cleaning & aggregation
 │
-├── scripts/                       # Python scripts for automation
-│   ├── combine_datasets.py        # Combies raw datasets into one dataset
+├── scripts/                                 # Python automation scripts
+│   └── combine_datasets.py                 # Merge season files
 │
-├── models/                        # Saved trained models
-├── results/                       # Model outputs and predictions
-└── README.md                      # Project documentation
+└── README.md                                # Project documentation
 ```
 
 ### 📓 Notebook Descriptions
 
-- **`exploratory_analysis.ipynb`**: 🔍 Comprehensive data exploration, statistical analysis, and visualization of Premier League match data and team performance trends
-- **`data_preprocessing.ipynb`**: 🧹 Data cleaning, feature engineering, and preparation of datasets for machine learning models
-- **`model_training.ipynb`**: 🤖 Development and training of various machine learning models (regression, classification, ensemble methods)
-- **`predictions.ipynb`**: 🎯 Final model evaluation, predictions generation, and results visualization
+**Core Notebooks:**
+- **`exploratory_analysis.ipynb`**: 🔍 Data exploration, visualization, and pattern analysis
+- **`data_preprocessing.ipynb`**: 🧹 Data cleaning, feature engineering, and aggregation (creates both processed datasets)
+
+**Algorithm Notebooks (in `algorithms/` folder):**
+- **`random_forest/random_forest.ipynb`**: 🌲 Random Forest model with GridSearchCV and rank correction (MAE: 0.20) ✅ Complete
+- **Future**: XGBoost, SVM, Decision Tree, K-Means, DBSCAN - each in dedicated folders
+
+**Organization:**
+- Each algorithm has its own folder with notebook + README
+- README contains performance metrics and model documentation
+- Easy comparison between different approaches
 
 ## 🛠️ Installation
 

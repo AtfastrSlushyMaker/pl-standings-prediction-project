@@ -1,12 +1,30 @@
 # ⚽ Premier League Standings Prediction
 
-A machine learning project that predicts Premier League standings using historical match data and advanced statistical modeling techniques.
+A comprehensive machine learning project implementing **6 different algorithms** to predict Premier League final standings using 25 seasons of historical data (2000-2025).
 
 ## 📋 Project Overview
 
-This project aims to predict the final Premier League standings for a given season by analyzing historical match data, team performance metrics, and various statistical indicators. Using machine learning algorithms, we build predictive models that can forecast team positions, points totals, and overall league table outcomes based on patterns observed in past seasons.
+This academic project compares six machine learning algorithms for predicting Premier League final positions based on end-of-season statistics. Each algorithm is implemented, optimized, and evaluated against business objectives with full French documentation.
 
-The project combines data science techniques with football analytics to provide insights into team performance trends and season outcomes, making it valuable for sports analysts, football enthusiasts, and anyone interested in predictive modeling in sports.
+### 🎯 Key Achievements
+
+- ✅ **6 Complete Algorithms**: Random Forest, XGBoost, SVM, KNN, Decision Tree, Gradient Boosting
+- ✅ **Best Performance**: MAE 0.20 positions (Random Forest)
+- ✅ **100% Relegation Detection**: SVM classifier
+- ✅ **25 Seasons of Data**: 500+ team-season observations
+- ✅ **Full Documentation**: Comparative analysis and conclusions in French
+- ✅ **All Notebooks Executable**: Google Colab compatible
+
+### 🏆 Algorithm Performance Summary
+
+| Algorithm | MAE | R² | Rank | Strength |
+|-----------|-----|-----|------|----------|
+| **Random Forest** | 0.20 | 0.95 | 🥇 | Best overall accuracy |
+| **XGBoost** | 1.12 | 0.95 | 🥈 | Strong regularization |
+| **SVM** | 1.23 | High | 🥉 | 100% relegation detection |
+| **KNN** | 1.27 | 0.92 | 4 | Similarity-based predictions |
+| **Decision Tree** | 1.5-2.5 | 0.85-0.92 | 5 | Highly interpretable |
+| **Gradient Boosting** | 1.62 | Good | 6 | Fast training |
 
 ## 📊 Data Source
 
@@ -43,14 +61,34 @@ pl-standings-prediction-project/
 │       └── README.md                        # Dataset documentation
 │
 ├── notebooks/                               # Jupyter notebooks
-│   ├── algorithms/                          # Individual algorithm implementations
-│   │   └── random_forest/                   # Random Forest model
-│   │       ├── random_forest.ipynb          # Model notebook
-│   │       └── README.md                    # Results & documentation
-│   │   # Future: xgboost/, svm/, decision_tree/, k_means/, dbscan/
+│   ├── algorithms/                          # 6 algorithm implementations ✅
+│   │   ├── random_forest/                   # Random Forest (MAE: 0.20) 🥇
+│   │   │   ├── random_forest.ipynb
+│   │   │   └── README.md
+│   │   ├── xgboost/                         # XGBoost (MAE: 1.12) 🥈
+│   │   │   ├── xgboost.ipynb
+│   │   │   └── README.md
+│   │   ├── svm/                             # SVM (100% relegation detection) 🥉
+│   │   │   ├── svm_model.ipynb
+│   │   │   └── README.md
+│   │   ├── knn/                             # KNN (MAE: 1.27)
+│   │   │   ├── knn.ipynb
+│   │   │   └── README.md
+│   │   ├── decision_tree/                   # Decision Tree (Interpretable)
+│   │   │   ├── decision_tree.ipynb
+│   │   │   └── README.md
+│   │   └── gradient_boosting/               # Gradient Boosting (MAE: 1.62)
+│   │       ├── gradient_boosting.ipynb
+│   │       └── README.md
 │   │
 │   ├── exploratory_analysis.ipynb          # Data exploration
-│   └── data_preprocessing.ipynb            # Data cleaning & aggregation
+│   ├── data_preprocessing.ipynb            # Data cleaning & aggregation
+│   └── model_training.ipynb                # Combined training notebook
+│
+├── docs/                                    # French documentation
+│   ├── tableau_comparatif.md               # Comparative analysis table
+│   ├── conclusion_finale.md                # Final evaluation report
+│   └── Objectifs-Data-Science-et-Algorithmes.pdf
 │
 ├── scripts/                                 # Python automation scripts
 │   └── combine_datasets.py                 # Merge season files
@@ -62,16 +100,20 @@ pl-standings-prediction-project/
 
 **Core Notebooks:**
 - **`exploratory_analysis.ipynb`**: 🔍 Data exploration, visualization, and pattern analysis
-- **`data_preprocessing.ipynb`**: 🧹 Data cleaning, feature engineering, and aggregation (creates both processed datasets)
+- **`data_preprocessing.ipynb`**: 🧹 Data cleaning, feature engineering, and aggregation
+- **`model_training.ipynb`**: 🎯 Combined training and comparison
 
-**Algorithm Notebooks (in `algorithms/` folder):**
-- **`random_forest/random_forest.ipynb`**: 🌲 Random Forest model with GridSearchCV and rank correction (MAE: 0.20) ✅ Complete
-- **Future**: XGBoost, SVM, Decision Tree, K-Means, DBSCAN - each in dedicated folders
+**Algorithm Implementations (6 complete):**
+1. **`random_forest/`**: Random Forest Regressor - Best overall (MAE: 0.20)
+2. **`xgboost/`**: XGBoost with regularization - Runner-up (MAE: 1.12)
+3. **`svm/`**: SVM for relegation detection - Perfect classification (100%)
+4. **`knn/`**: K-Nearest Neighbors - Similarity-based (MAE: 1.27)
+5. **`decision_tree/`**: Decision Tree - Interpretable rules (MAE: 1.5-2.5)
+6. **`gradient_boosting/`**: LightGBM - Fast training (MAE: 1.62)
 
-**Organization:**
-- Each algorithm has its own folder with notebook + README
-- README contains performance metrics and model documentation
-- Easy comparison between different approaches
+**Documentation (French):**
+- **`docs/tableau_comparatif.md`**: Comparative table with BO, DSO, and performance metrics
+- **`docs/conclusion_finale.md`**: Comprehensive evaluation and recommendations
 
 ## 🛠️ Installation
 
@@ -93,12 +135,6 @@ source venv/bin/activate
 pip install pandas numpy matplotlib seaborn scikit-learn jupyter plotly
 ```
 
-Or install from requirements file (if available):
-
-```bash
-pip install -r requirements.txt
-```
-
 ### 🔧 Core Dependencies
 
 - **pandas**: 🐼 Data manipulation and analysis
@@ -109,73 +145,68 @@ pip install -r requirements.txt
 - **jupyter**: 📓 Interactive notebook environment
 - **plotly**: 📈 Interactive visualizations (optional)
 
-## 🚀 Usage
+## 🚀 Quick Start
 
-Follow these steps to reproduce the analysis and generate predictions:
-
-### 1. Data Loading and Exploration
-
+1. **Clone the repository**
 ```bash
-jupyter notebook notebooks/exploratory_analysis.ipynb
+git clone https://github.com/AtfastrSlushyMaker/pl-standings-prediction-project.git
+cd pl-standings-prediction-project
 ```
 
-This notebook will:
-
-- 📥 Load the Premier League dataset
-- 🔍 Explore data structure and quality
-- 📊 Generate visualizations of team performance trends
-- 🔎 Identify key patterns in historical data
-
-### 2. Data Preprocessing
-
+2. **Install dependencies**
 ```bash
-jupyter notebook notebooks/data_preprocessing.ipynb
+pip install pandas numpy scikit-learn xgboost lightgbm matplotlib seaborn shap jupyter
 ```
 
-This step includes:
-
-- 🧹 Data cleaning and handling missing values
-- ⚙️ Feature engineering (creating predictive variables)
-- 🔄 Data transformation and normalization
-- ✂️ Train/test split preparation
-
-### 3. Model Training
-
+3. **Run notebooks**
 ```bash
-jupyter notebook notebooks/model_training.ipynb
+jupyter notebook notebooks/
 ```
 
-Train multiple machine learning models:
+### 📊 Workflow
 
-- 📈 Linear regression for points prediction
-- 🌳 Random Forest for classification
-- 🚀 Gradient boosting models
-- 🏆 Model comparison and selection
-
-### 4. Generate Predictions
-
-```bash
-jupyter notebook notebooks/predictions.ipynb
-```
-
-Final step to:
-
-- 🎯 Load best performing model
-- 🔮 Generate standings predictions
-- 📊 Evaluate model performance
-- 📈 Visualize predicted vs actual results
+1. **`exploratory_analysis.ipynb`**: Understand the data
+2. **`data_preprocessing.ipynb`**: Clean and prepare features
+3. **Algorithm notebooks**: Train and evaluate each model
+   - Start with `random_forest/random_forest.ipynb` (best performer)
+   - Compare with other 5 algorithms
+4. **Review documentation**: Check `docs/` for comparative analysis
 
 
-### 🛠️ Development Setup
+## 📈 Key Results
 
-1. 🍴 Fork the repository
-2. 🌿 Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. ✏️ Make your changes
-4. 🧪 Add tests if applicable
-5. 💾 Commit your changes (`git commit -m 'Add amazing feature'`)
-6. 📤 Push to the branch (`git push origin feature/amazing-feature`)
-7. 🔄 Open a Pull Request
+### Business Objectives Satisfaction
 
+✅ **All 6 algorithms meet their business objectives**
+
+- **Random Forest**: Predicts final standings with exceptional precision (MAE 0.20)
+- **XGBoost**: Maximizes performance with strong regularization
+- **SVM**: Detects relegation risks with 100% accuracy (ROC AUC 1.0)
+- **KNN**: Predicts positions via team similarity (80% within ±2)
+- **Decision Tree**: Provides interpretable decision rules for management
+- **Gradient Boosting**: Sequential error correction for balanced predictions
+
+### Top Features (All Models)
+
+1. **Goal Difference** - Primary predictor in all 6 models
+2. **Points** - Direct indicator of season performance
+3. **Wins** - Number of victories
+4. **Goals For** - Offensive efficiency
+5. **Clean Sheets** - Defensive stability
+
+## 📚 Documentation
+
+- **French Comparative Analysis**: `docs/tableau_comparatif.md`
+- **French Conclusion Report**: `docs/conclusion_finale.md`
+- **Algorithm READMEs**: Detailed performance metrics in each algorithm folder
+- **Colab Notebooks**: All 6 algorithms executable online
+
+## 🎓 Academic Context
+
+This project was developed as part of a Machine Learning course focusing on:
+- Machine learning algorithm comparison
+- Business objective alignment (BO)
+- Data Science objective evaluation (DSO)
+- Reproducible research practices
 ---
-
-**⚠️ Note**: This project is for educational and research purposes. The predictions generated should not be used for commercial betting or gambling activities.
+**⚠️ Note**: This project is for educational and research purposes. Predictions should not be used for commercial betting or gambling activities.

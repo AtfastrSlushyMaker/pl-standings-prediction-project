@@ -24,25 +24,38 @@ La Premier League est l'une des compétitions de football les plus compétitives
 - **Pour les parieurs** : Maximisation des gains via prédictions précises
 - **Pour les médias** : Contenus prédictifs attractifs
 
-### 1.2 Objectif
+### 1.2 Objectifs Métier (Business Objectives)
 
-Développer et comparer **six modèles de machine learning** capables de prédire :
-1. **Le classement final** (positions 1 à 20)
-2. **Les risques de relégation** (positions 18-20)
-3. **Les équipes de tête** (Champions League, Europa League)
+Le projet a été restructuré pour répondre à **trois objectifs métier distincts**, exploitant l'ensemble des données disponibles :
+
+1.  **BO1 : Prédiction du Classement Final de Saison**
+    *   **Objectif** : Anticiper la position exacte (1-20) de chaque équipe à la fin de la saison.
+    *   **Dataset** : `team_season_aggregated.csv` (Données agrégées par saison).
+    *   **Type** : Régression.
+    *   **Métrique clé** : MAE (Mean Absolute Error).
+    *   **Algorithmes testés** : Random Forest, XGBoost, KNN, Gradient Boosting.
+
+2.  **BO2 : Prédiction du Vainqueur d'un Match**
+    *   **Objectif** : Prédire qui va gagner chaque match individuel (Domicile / Nul / Extérieur).
+    *   **Dataset** : `processed_premier_league_combined.csv` (Données détaillées par match ~9500 matchs).
+    *   **Type** : Classification multi-classes.
+    *   **Métrique clé** : Accuracy (Précision globale).
+    *   **Algorithmes testés** : SVM, Random Forest, XGBoost, KNN.
+
+3.  **BO3 : Qualification pour la Champions League (Top 4)**
+    *   **Objectif** : Identifier les équipes qui finiront dans le Top 4 (qualification Champions League).
+    *   **Dataset** : `team_season_aggregated.csv`.
+    *   **Type** : Classification binaire.
+    *   **Métrique clé** : F1-Score et Précision (équilibre détection/faux positifs).
+    *   **Algorithmes testés** : SVM, Random Forest, Gradient Boosting, XGBoost.
 
 ### 1.3 Données Utilisées
 
 **Source** : Base de données historiques Premier League (2000-2025)
 
-**Volume** :
-- 25 saisons complètes
-- 500+ observations (équipes-saisons)
-- 25 variables de performance :
-  - **Indicateurs de résultat** : Points, victoires, nuls, défaites, différence de buts
-  - **Statistiques offensives** : Buts marqués, tirs, précision, passes
-  - **Statistiques défensives** : Buts encaissés, clean sheets, tacles
-  - **Indicateurs contextuels** : Performance domicile/extérieur, séquences de victoires
+**Datasets** :
+1.  **`team_season_aggregated.csv`** : Performance consolidée par équipe et par saison (Points, Buts, etc.). Utilisé pour **BO1** et **BO3**.
+2.  **`processed_premier_league_combined.csv`** : Historique complet des matchs (~9500 matchs). Utilisé pour **BO2**.
 
 **Prétraitement** :
 - Nettoyage des valeurs manquantes

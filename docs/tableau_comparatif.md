@@ -2,30 +2,44 @@
 
 ## Vue d'ensemble du projet
 
-**Objectif général** : Prédire le classement final des équipes de Premier League (positions 1 à 20) à partir de statistiques de performance en fin de saison.
+**Objectifs Métier (Business Objectives)** : 
+1.  **BO1 - Classement Final** : Prédire la position finale (1-20) - Régression.
+2.  **BO2 - Vainqueur de Match** : Prédire qui gagne chaque match (H/D/A) - Classification.
+3.  **BO3 - Qualification Top 4** : Identifier les équipes Champions League - Classification binaire.
 
-**Données** : 25 saisons (2000-01 à 2024-25), ~500 équipes-saisons, 25 indicateurs de performance.
+**Datasets** : 
+- `team_season_aggregated.csv` (~500 équipes-saisons) → BO1, BO3.
+- `processed_premier_league_combined.csv` (~9500 matchs) → BO2.
 
-**Méthodologie** : Division temporelle stricte – entraînement sur saisons historiques (2000-2024), test sur saison récente (2024-25).
+**Méthodologie** : Comparaison multi-algorithmes pour chaque objectif métier distinct.
 
 ---
 
-## Résumé des Performances
+## Résumé des Performances par Objectif
 
-| Algorithme | Objectif Métier | MAE | R² | Précision ±1 | Précision ±2 | Statut |
-|------------|-----------------|-----|-----|--------------|--------------|--------|
-| **Random Forest** | Prédire classement final avec haute précision | **0.20** | **0.95** | **100%** | **100%** | ✅ Excellent |
-| **XGBoost** | Performance maximale avec régularisation | **1.12** | **0.95** | 45% | **90%** | ✅ Excellent |
-| **SVM** | Détecter les risques de relégation | 1.23 | Élevé | N/A | N/A | ✅ Parfait (100% détection relégation) |
-| **KNN** | Prédire via similarité entre équipes | 1.27 | 0.92 | 58% | 80% | ✅ Bon |
-| **Decision Tree** | Règles interprétables pour décisions | 1.5-2.5 | 0.85-0.92 | 55-65% | 75-85% | ✅ Bon |
-| **Gradient Boosting** | Correction séquentielle des erreurs | 1.62 | Bon | 58% | 72% | ✅ Satisfaisant |
+### BO1 : Prédiction du Classement Final (MAE - plus bas = meilleur)
+| Algorithme | MAE | Rang |
+|------------|-----|------|
+| **Random Forest** | **0.20** | 🥇 |
+| **XGBoost** | 1.12 | 🥈 |
+| **KNN** | 1.27 | 🥉 |
+| **Gradient Boosting** | 1.62 | 4 |
 
-**Légende** :
-- **MAE** : Erreur Absolue Moyenne (en positions) – plus faible = meilleur
-- **R²** : Coefficient de détermination – plus proche de 1 = meilleur
-- **Précision ±1** : Pourcentage de prédictions à ±1 position de la réalité
-- **Précision ±2** : Pourcentage de prédictions à ±2 positions de la réalité
+### BO2 : Prédiction Vainqueur de Match (Accuracy - plus haut = meilleur)
+| Algorithme | Accuracy | Rang |
+|------------|----------|------|
+| **SVM (RBF)** | *À évaluer* | - |
+| **Random Forest** | *À évaluer* | - |
+| **XGBoost** | *À évaluer* | - |
+| **KNN** | *À évaluer* | - |
+
+### BO3 : Qualification Champions League Top 4 (F1-Score - plus haut = meilleur)
+| Algorithme | F1-Score | Précision | Rappel | Rang |
+|------------|----------|-----------|--------|------|
+| **SVM** | *À évaluer* | - | - | - |
+| **Random Forest** | *À évaluer* | - | - | - |
+| **XGBoost** | *À évaluer* | - | - | - |
+| **Gradient Boosting** | *À évaluer* | - | - | - |
 
 ---
 
@@ -189,6 +203,7 @@
 | Besoin | Algorithme Recommandé | Raison |
 |--------|----------------------|---------|
 | **Prédiction finale de saison** | Random Forest | Précision maximale (MAE 0.20) |
+| **Prédiction issue de match** | Random Forest | Capacité de classification (Win/Draw/Loss) |
 | **Détection risque de relégation** | SVM | 100% de détection, ROC AUC parfait |
 | **Analyse explicable pour direction** | Decision Tree | Règles claires et visualisables |
 | **Pipeline production haute performance** | XGBoost | Régularisation robuste, excellent R² |

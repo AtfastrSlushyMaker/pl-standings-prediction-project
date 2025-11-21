@@ -42,16 +42,21 @@ Each business objective uses 5 algorithms with comprehensive GridSearchCV hyperp
 **Dataset**: `processed_premier_league_combined.csv` (~9,500 matches)
 
 **Best Models:**
-| Model | Accuracy | F1 (Macro) | ROC AUC | Param Combinations |
-|-------|----------|------------|---------|-------------------|
-| Random Forest | ~45% | ~0.32 | ~0.68 | 324 |
-| Decision Tree | ~44% | ~0.31 | ~0.66 | 144 |
-| KNN | ~44% | ~0.30 | ~0.65 | 20 |
+| Model | CV Accuracy | Test Accuracy | ROC AUC | Param Combinations |
+|-------|-------------|---------------|---------|-------------------|
+| SVM (RBF) | 57.1% | 57.9% | ~0.75 | 36 |
+| Random Forest | 52.6% | 59.2% | ~0.76 | 324 |
+| Gradient Boosting | 42.8% | 57.4% | ~0.75 | 144 |
 
 **Baseline**: 33% (random guessing for 3-class problem)
 
+**Features**: 15 total (3 identifiers + 12 match statistics)
+- Team identifiers: HomeTeam, AwayTeam, Season
+- Match statistics: Shots, Shots on Target, Fouls, Corners, Yellow Cards, Red Cards (home and away)
+
 **Key Features**: 
-- Class balancing for imbalanced outcomes
+- Raw match statistics allow models to learn patterns directly
+- League average stats used for 2025-26 forecasting
 - All 380 fixtures predicted for 2025-26
 - Complete league table simulation from match predictions
 - Accounts for relegated/promoted teams with proper encodings
@@ -212,12 +217,15 @@ jupyter notebook notebooks/
 - **Business Value**: Financial planning, strategic goal setting, media predictions
 
 ✅ **BO2: Match Outcome Prediction**  
-- **Best Model**: Random Forest (Accuracy: ~45%, significantly better than 33% baseline)
-- **Key Insight**: Home advantage and team quality are strongest predictors
+- **Best Model**: Random Forest (Test Accuracy: 59.2%, CV: 52.6%)
+- **Runner-up**: SVM RBF (Test Accuracy: 57.9%, CV: 57.1% - best generalization)
+- **Improvement**: 57-59% accuracy vs 33% baseline (76% improvement)
+- **Key Insight**: Raw match statistics (shots, fouls, corners, cards) provide crucial context
 - **2025-26 Forecast**: All 380 matches predicted with complete league table
   - Includes all 20 teams with correct encodings
+  - Uses league average stats for forecasting
   - Simulates entire season from individual match predictions
-- **Innovation**: Full fixture generation with realistic team roster
+- **Innovation**: 15-feature model (expanded from 3) with match statistics
 - **Business Value**: Betting analysis, match previews, fan engagement
 
 ### Hyperparameter Tuning Impact
@@ -245,9 +253,12 @@ jupyter notebook notebooks/
 5. Win Rate - Normalized performance
 
 **BO2 (Match Outcomes):**
-1. Home Team Identity - Home advantage effect
-2. Away Team Identity - Team quality matchup
-3. Season Context - Temporal patterns
+1. Team Identities - Home/away team matchups
+2. Shots (Home & Away) - Offensive pressure and quality
+3. Shots on Target - Finishing accuracy
+4. Fouls - Team aggression and playing style
+5. Corners - Territorial dominance
+6. Cards (Yellow/Red) - Discipline and referee patterns
 
 ## 📚 Documentation
 
@@ -274,7 +285,7 @@ This project was developed as part of a Machine Learning course focusing on:
 
 **BO2**: `processed_premier_league_combined.csv` (~9,500 matches)
 - Match-level data from 2000-2025
-- 3 features: Home Team, Away Team, Season
+- 15 features: Home Team, Away Team, Season + 12 match statistics (shots, shots on target, fouls, corners, yellow cards, red cards)
 - Target: Match outcome (Home Win/Draw/Away Win)
 
 ---

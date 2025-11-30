@@ -1,0 +1,501 @@
+Season,Team,Cluster,Style,Method
+2000-01,Man United,4,Attacking,K-Means
+2000-01,Arsenal,0,Defensive,K-Means
+2000-01,Liverpool,0,Defensive,K-Means
+2000-01,Leeds,0,Defensive,K-Means
+2000-01,Ipswich,0,Defensive,K-Means
+2000-01,Chelsea,0,Defensive,K-Means
+2000-01,Sunderland,0,Defensive,K-Means
+2000-01,Aston Villa,2,High-Press,K-Means
+2000-01,Charlton,0,Defensive,K-Means
+2000-01,Southampton,0,Defensive,K-Means
+2000-01,Newcastle,2,High-Press,K-Means
+2000-01,Tottenham,0,Defensive,K-Means
+2000-01,Leicester,2,High-Press,K-Means
+2000-01,Middlesbrough,2,High-Press,K-Means
+2000-01,West Ham,2,High-Press,K-Means
+2000-01,Everton,2,High-Press,K-Means
+2000-01,Derby,2,High-Press,K-Means
+2000-01,Man City,2,High-Press,K-Means
+2000-01,Coventry,2,High-Press,K-Means
+2000-01,Bradford,2,High-Press,K-Means
+2001-02,Arsenal,4,Attacking,K-Means
+2001-02,Liverpool,4,Attacking,K-Means
+2001-02,Man United,4,Attacking,K-Means
+2001-02,Newcastle,0,Defensive,K-Means
+2001-02,Leeds,0,Defensive,K-Means
+2001-02,Chelsea,0,Defensive,K-Means
+2001-02,West Ham,0,Defensive,K-Means
+2001-02,Aston Villa,0,Defensive,K-Means
+2001-02,Tottenham,2,High-Press,K-Means
+2001-02,Blackburn,0,Defensive,K-Means
+2001-02,Southampton,2,High-Press,K-Means
+2001-02,Middlesbrough,2,High-Press,K-Means
+2001-02,Fulham,2,High-Press,K-Means
+2001-02,Charlton,2,High-Press,K-Means
+2001-02,Everton,2,High-Press,K-Means
+2001-02,Bolton,2,High-Press,K-Means
+2001-02,Sunderland,2,High-Press,K-Means
+2001-02,Ipswich,2,High-Press,K-Means
+2001-02,Derby,2,High-Press,K-Means
+2001-02,Leicester,2,High-Press,K-Means
+2002-03,Man United,4,Attacking,K-Means
+2002-03,Arsenal,4,Attacking,K-Means
+2002-03,Newcastle,0,Defensive,K-Means
+2002-03,Chelsea,0,Defensive,K-Means
+2002-03,Liverpool,0,Defensive,K-Means
+2002-03,Blackburn,0,Defensive,K-Means
+2002-03,Everton,0,Defensive,K-Means
+2002-03,Southampton,0,Defensive,K-Means
+2002-03,Man City,0,Defensive,K-Means
+2002-03,Tottenham,2,High-Press,K-Means
+2002-03,Middlesbrough,0,Defensive,K-Means
+2002-03,Charlton,0,Defensive,K-Means
+2002-03,Birmingham,2,High-Press,K-Means
+2002-03,Fulham,2,High-Press,K-Means
+2002-03,Leeds,2,High-Press,K-Means
+2002-03,Aston Villa,2,High-Press,K-Means
+2002-03,Bolton,2,High-Press,K-Means
+2002-03,West Ham,2,High-Press,K-Means
+2002-03,West Brom,2,High-Press,K-Means
+2002-03,Sunderland,2,High-Press,K-Means
+2003-04,Arsenal,4,Attacking,K-Means
+2003-04,Chelsea,4,Attacking,K-Means
+2003-04,Man United,4,Attacking,K-Means
+2003-04,Liverpool,0,Defensive,K-Means
+2003-04,Newcastle,0,Defensive,K-Means
+2003-04,Aston Villa,0,Defensive,K-Means
+2003-04,Charlton,0,Defensive,K-Means
+2003-04,Bolton,0,Defensive,K-Means
+2003-04,Fulham,0,Defensive,K-Means
+2003-04,Birmingham,0,Defensive,K-Means
+2003-04,Middlesbrough,0,Defensive,K-Means
+2003-04,Southampton,0,Defensive,K-Means
+2003-04,Portsmouth,2,High-Press,K-Means
+2003-04,Tottenham,2,High-Press,K-Means
+2003-04,Blackburn,2,High-Press,K-Means
+2003-04,Man City,2,High-Press,K-Means
+2003-04,Everton,2,High-Press,K-Means
+2003-04,Leicester,2,High-Press,K-Means
+2003-04,Leeds,2,High-Press,K-Means
+2003-04,Wolves,2,High-Press,K-Means
+2004-05,Chelsea,4,Attacking,K-Means
+2004-05,Arsenal,4,Attacking,K-Means
+2004-05,Man United,4,Attacking,K-Means
+2004-05,Everton,0,Defensive,K-Means
+2004-05,Liverpool,0,Defensive,K-Means
+2004-05,Bolton,0,Defensive,K-Means
+2004-05,Middlesbrough,0,Defensive,K-Means
+2004-05,Man City,0,Defensive,K-Means
+2004-05,Tottenham,0,Defensive,K-Means
+2004-05,Aston Villa,0,Defensive,K-Means
+2004-05,Charlton,0,Defensive,K-Means
+2004-05,Birmingham,2,High-Press,K-Means
+2004-05,Fulham,2,High-Press,K-Means
+2004-05,Newcastle,2,High-Press,K-Means
+2004-05,Blackburn,2,High-Press,K-Means
+2004-05,Portsmouth,2,High-Press,K-Means
+2004-05,West Brom,2,High-Press,K-Means
+2004-05,Crystal Palace,2,High-Press,K-Means
+2004-05,Norwich,2,High-Press,K-Means
+2004-05,Southampton,2,High-Press,K-Means
+2005-06,Chelsea,4,Attacking,K-Means
+2005-06,Man United,4,Attacking,K-Means
+2005-06,Liverpool,4,Attacking,K-Means
+2005-06,Arsenal,0,Defensive,K-Means
+2005-06,Tottenham,0,Defensive,K-Means
+2005-06,Blackburn,0,Defensive,K-Means
+2005-06,Newcastle,0,Defensive,K-Means
+2005-06,Bolton,0,Defensive,K-Means
+2005-06,West Ham,0,Defensive,K-Means
+2005-06,Wigan,2,High-Press,K-Means
+2005-06,Everton,2,High-Press,K-Means
+2005-06,Fulham,2,High-Press,K-Means
+2005-06,Charlton,2,High-Press,K-Means
+2005-06,Middlesbrough,2,High-Press,K-Means
+2005-06,Man City,2,High-Press,K-Means
+2005-06,Aston Villa,2,High-Press,K-Means
+2005-06,Portsmouth,2,High-Press,K-Means
+2005-06,Birmingham,2,High-Press,K-Means
+2005-06,West Brom,2,High-Press,K-Means
+2005-06,Sunderland,2,High-Press,K-Means
+2006-07,Man United,4,Attacking,K-Means
+2006-07,Chelsea,4,Attacking,K-Means
+2006-07,Liverpool,4,Attacking,K-Means
+2006-07,Arsenal,4,Attacking,K-Means
+2006-07,Tottenham,0,Defensive,K-Means
+2006-07,Everton,0,Defensive,K-Means
+2006-07,Bolton,2,High-Press,K-Means
+2006-07,Reading,0,Defensive,K-Means
+2006-07,Portsmouth,0,Defensive,K-Means
+2006-07,Blackburn,2,High-Press,K-Means
+2006-07,Aston Villa,0,Defensive,K-Means
+2006-07,Middlesbrough,2,High-Press,K-Means
+2006-07,Newcastle,2,High-Press,K-Means
+2006-07,Man City,2,High-Press,K-Means
+2006-07,West Ham,2,High-Press,K-Means
+2006-07,Fulham,2,High-Press,K-Means
+2006-07,Wigan,2,High-Press,K-Means
+2006-07,Sheffield United,2,High-Press,K-Means
+2006-07,Charlton,2,High-Press,K-Means
+2006-07,Watford,2,High-Press,K-Means
+2007-08,Man United,4,Attacking,K-Means
+2007-08,Chelsea,4,Attacking,K-Means
+2007-08,Arsenal,4,Attacking,K-Means
+2007-08,Liverpool,4,Attacking,K-Means
+2007-08,Everton,0,Defensive,K-Means
+2007-08,Aston Villa,0,Defensive,K-Means
+2007-08,Blackburn,2,High-Press,K-Means
+2007-08,Portsmouth,0,Defensive,K-Means
+2007-08,Man City,0,Defensive,K-Means
+2007-08,West Ham,2,High-Press,K-Means
+2007-08,Tottenham,0,Defensive,K-Means
+2007-08,Newcastle,2,High-Press,K-Means
+2007-08,Middlesbrough,2,High-Press,K-Means
+2007-08,Wigan,2,High-Press,K-Means
+2007-08,Sunderland,2,High-Press,K-Means
+2007-08,Bolton,2,High-Press,K-Means
+2007-08,Fulham,2,High-Press,K-Means
+2007-08,Reading,2,High-Press,K-Means
+2007-08,Birmingham,2,High-Press,K-Means
+2007-08,Derby,2,High-Press,K-Means
+2008-09,Man United,4,Attacking,K-Means
+2008-09,Liverpool,4,Attacking,K-Means
+2008-09,Chelsea,4,Attacking,K-Means
+2008-09,Arsenal,4,Attacking,K-Means
+2008-09,Everton,0,Defensive,K-Means
+2008-09,Aston Villa,0,Defensive,K-Means
+2008-09,Fulham,0,Defensive,K-Means
+2008-09,Tottenham,0,Defensive,K-Means
+2008-09,West Ham,2,High-Press,K-Means
+2008-09,Man City,0,Defensive,K-Means
+2008-09,Wigan,2,High-Press,K-Means
+2008-09,Stoke,2,High-Press,K-Means
+2008-09,Bolton,2,High-Press,K-Means
+2008-09,Portsmouth,2,High-Press,K-Means
+2008-09,Blackburn,2,High-Press,K-Means
+2008-09,Sunderland,1,Pragmatic,K-Means
+2008-09,Hull,2,High-Press,K-Means
+2008-09,Newcastle,2,High-Press,K-Means
+2008-09,Middlesbrough,2,High-Press,K-Means
+2008-09,West Brom,2,High-Press,K-Means
+2009-10,Chelsea,4,Attacking,K-Means
+2009-10,Man United,4,Attacking,K-Means
+2009-10,Arsenal,4,Attacking,K-Means
+2009-10,Tottenham,4,Attacking,K-Means
+2009-10,Man City,0,Defensive,K-Means
+2009-10,Aston Villa,0,Defensive,K-Means
+2009-10,Liverpool,0,Defensive,K-Means
+2009-10,Everton,0,Defensive,K-Means
+2009-10,Birmingham,2,High-Press,K-Means
+2009-10,Blackburn,0,Defensive,K-Means
+2009-10,Stoke,2,High-Press,K-Means
+2009-10,Fulham,0,Defensive,K-Means
+2009-10,Sunderland,2,High-Press,K-Means
+2009-10,Bolton,2,High-Press,K-Means
+2009-10,Wolves,2,High-Press,K-Means
+2009-10,Wigan,2,High-Press,K-Means
+2009-10,West Ham,2,High-Press,K-Means
+2009-10,Burnley,2,High-Press,K-Means
+2009-10,Hull,2,High-Press,K-Means
+2009-10,Portsmouth,2,High-Press,K-Means
+2010-11,Man United,4,Attacking,K-Means
+2010-11,Chelsea,4,Attacking,K-Means
+2010-11,Man City,4,Attacking,K-Means
+2010-11,Arsenal,4,Attacking,K-Means
+2010-11,Tottenham,0,Defensive,K-Means
+2010-11,Liverpool,0,Defensive,K-Means
+2010-11,Everton,0,Defensive,K-Means
+2010-11,Fulham,0,Defensive,K-Means
+2010-11,Aston Villa,2,High-Press,K-Means
+2010-11,Sunderland,2,High-Press,K-Means
+2010-11,West Brom,2,High-Press,K-Means
+2010-11,Newcastle,2,High-Press,K-Means
+2010-11,Stoke,2,High-Press,K-Means
+2010-11,Bolton,2,High-Press,K-Means
+2010-11,Blackburn,2,High-Press,K-Means
+2010-11,Wigan,2,High-Press,K-Means
+2010-11,Wolves,2,High-Press,K-Means
+2010-11,Birmingham,2,High-Press,K-Means
+2010-11,Blackpool,2,High-Press,K-Means
+2010-11,West Ham,2,High-Press,K-Means
+2011-12,Man City,4,Attacking,K-Means
+2011-12,Man United,4,Attacking,K-Means
+2011-12,Arsenal,4,Attacking,K-Means
+2011-12,Tottenham,4,Attacking,K-Means
+2011-12,Newcastle,3,Possession,K-Means
+2011-12,Chelsea,3,Possession,K-Means
+2011-12,Everton,0,Defensive,K-Means
+2011-12,Liverpool,0,Defensive,K-Means
+2011-12,Fulham,0,Defensive,K-Means
+2011-12,West Brom,0,Defensive,K-Means
+2011-12,Swansea,0,Defensive,K-Means
+2011-12,Norwich,2,High-Press,K-Means
+2011-12,Sunderland,2,High-Press,K-Means
+2011-12,Stoke,2,High-Press,K-Means
+2011-12,Wigan,2,High-Press,K-Means
+2011-12,Aston Villa,2,High-Press,K-Means
+2011-12,QPR,2,High-Press,K-Means
+2011-12,Bolton,2,High-Press,K-Means
+2011-12,Blackburn,2,High-Press,K-Means
+2011-12,Wolves,2,High-Press,K-Means
+2012-13,Man United,4,Attacking,K-Means
+2012-13,Man City,4,Attacking,K-Means
+2012-13,Chelsea,4,Attacking,K-Means
+2012-13,Arsenal,4,Attacking,K-Means
+2012-13,Tottenham,4,Attacking,K-Means
+2012-13,Everton,0,Defensive,K-Means
+2012-13,Liverpool,4,Attacking,K-Means
+2012-13,West Brom,2,High-Press,K-Means
+2012-13,Swansea,2,High-Press,K-Means
+2012-13,West Ham,2,High-Press,K-Means
+2012-13,Norwich,2,High-Press,K-Means
+2012-13,Fulham,2,High-Press,K-Means
+2012-13,Stoke,2,High-Press,K-Means
+2012-13,Southampton,2,High-Press,K-Means
+2012-13,Aston Villa,2,High-Press,K-Means
+2012-13,Newcastle,2,High-Press,K-Means
+2012-13,Sunderland,2,High-Press,K-Means
+2012-13,Wigan,2,High-Press,K-Means
+2012-13,Reading,2,High-Press,K-Means
+2012-13,QPR,1,Pragmatic,K-Means
+2013-14,Man City,4,Attacking,K-Means
+2013-14,Liverpool,4,Attacking,K-Means
+2013-14,Chelsea,4,Attacking,K-Means
+2013-14,Arsenal,4,Attacking,K-Means
+2013-14,Everton,4,Attacking,K-Means
+2013-14,Tottenham,3,Possession,K-Means
+2013-14,Man United,3,Possession,K-Means
+2013-14,Southampton,3,Possession,K-Means
+2013-14,Stoke,1,Pragmatic,K-Means
+2013-14,Newcastle,3,Possession,K-Means
+2013-14,Crystal Palace,1,Pragmatic,K-Means
+2013-14,Swansea,3,Possession,K-Means
+2013-14,West Ham,1,Pragmatic,K-Means
+2013-14,Sunderland,1,Pragmatic,K-Means
+2013-14,Aston Villa,1,Pragmatic,K-Means
+2013-14,Hull,1,Pragmatic,K-Means
+2013-14,West Brom,1,Pragmatic,K-Means
+2013-14,Norwich,1,Pragmatic,K-Means
+2013-14,Fulham,1,Pragmatic,K-Means
+2013-14,Cardiff,1,Pragmatic,K-Means
+2014-15,Chelsea,4,Attacking,K-Means
+2014-15,Man City,4,Attacking,K-Means
+2014-15,Arsenal,4,Attacking,K-Means
+2014-15,Man United,3,Possession,K-Means
+2014-15,Tottenham,3,Possession,K-Means
+2014-15,Liverpool,3,Possession,K-Means
+2014-15,Southampton,3,Possession,K-Means
+2014-15,Swansea,3,Possession,K-Means
+2014-15,Stoke,3,Possession,K-Means
+2014-15,Crystal Palace,2,High-Press,K-Means
+2014-15,Everton,1,Pragmatic,K-Means
+2014-15,West Ham,1,Pragmatic,K-Means
+2014-15,West Brom,1,Pragmatic,K-Means
+2014-15,Leicester,2,High-Press,K-Means
+2014-15,Newcastle,1,Pragmatic,K-Means
+2014-15,Sunderland,1,Pragmatic,K-Means
+2014-15,Aston Villa,1,Pragmatic,K-Means
+2014-15,Hull,1,Pragmatic,K-Means
+2014-15,Burnley,1,Pragmatic,K-Means
+2014-15,QPR,1,Pragmatic,K-Means
+2015-16,Leicester,4,Attacking,K-Means
+2015-16,Arsenal,4,Attacking,K-Means
+2015-16,Tottenham,4,Attacking,K-Means
+2015-16,Man City,4,Attacking,K-Means
+2015-16,Man United,0,Defensive,K-Means
+2015-16,Southampton,3,Possession,K-Means
+2015-16,West Ham,3,Possession,K-Means
+2015-16,Liverpool,3,Possession,K-Means
+2015-16,Stoke,1,Pragmatic,K-Means
+2015-16,Chelsea,3,Possession,K-Means
+2015-16,Everton,3,Possession,K-Means
+2015-16,Swansea,1,Pragmatic,K-Means
+2015-16,Watford,1,Pragmatic,K-Means
+2015-16,West Brom,1,Pragmatic,K-Means
+2015-16,Crystal Palace,1,Pragmatic,K-Means
+2015-16,Bournemouth,1,Pragmatic,K-Means
+2015-16,Sunderland,1,Pragmatic,K-Means
+2015-16,Newcastle,1,Pragmatic,K-Means
+2015-16,Norwich,1,Pragmatic,K-Means
+2015-16,Aston Villa,1,Pragmatic,K-Means
+2016-17,Chelsea,4,Attacking,K-Means
+2016-17,Tottenham,4,Attacking,K-Means
+2016-17,Man City,4,Attacking,K-Means
+2016-17,Liverpool,4,Attacking,K-Means
+2016-17,Arsenal,4,Attacking,K-Means
+2016-17,Man United,3,Possession,K-Means
+2016-17,Everton,3,Possession,K-Means
+2016-17,Southampton,1,Pragmatic,K-Means
+2016-17,Bournemouth,3,Possession,K-Means
+2016-17,West Brom,1,Pragmatic,K-Means
+2016-17,West Ham,1,Pragmatic,K-Means
+2016-17,Leicester,1,Pragmatic,K-Means
+2016-17,Stoke,1,Pragmatic,K-Means
+2016-17,Crystal Palace,1,Pragmatic,K-Means
+2016-17,Swansea,1,Pragmatic,K-Means
+2016-17,Burnley,1,Pragmatic,K-Means
+2016-17,Watford,1,Pragmatic,K-Means
+2016-17,Hull,1,Pragmatic,K-Means
+2016-17,Middlesbrough,1,Pragmatic,K-Means
+2016-17,Sunderland,1,Pragmatic,K-Means
+2017-18,Man City,4,Attacking,K-Means
+2017-18,Man United,4,Attacking,K-Means
+2017-18,Tottenham,4,Attacking,K-Means
+2017-18,Liverpool,4,Attacking,K-Means
+2017-18,Chelsea,4,Attacking,K-Means
+2017-18,Arsenal,3,Possession,K-Means
+2017-18,Burnley,1,Pragmatic,K-Means
+2017-18,Everton,1,Pragmatic,K-Means
+2017-18,Leicester,3,Possession,K-Means
+2017-18,Newcastle,1,Pragmatic,K-Means
+2017-18,Crystal Palace,1,Pragmatic,K-Means
+2017-18,Bournemouth,1,Pragmatic,K-Means
+2017-18,West Ham,1,Pragmatic,K-Means
+2017-18,Watford,1,Pragmatic,K-Means
+2017-18,Brighton,1,Pragmatic,K-Means
+2017-18,Huddersfield,1,Pragmatic,K-Means
+2017-18,Southampton,1,Pragmatic,K-Means
+2017-18,Swansea,1,Pragmatic,K-Means
+2017-18,Stoke,1,Pragmatic,K-Means
+2017-18,West Brom,1,Pragmatic,K-Means
+2018-19,Man City,4,Attacking,K-Means
+2018-19,Liverpool,4,Attacking,K-Means
+2018-19,Chelsea,4,Attacking,K-Means
+2018-19,Tottenham,3,Possession,K-Means
+2018-19,Arsenal,3,Possession,K-Means
+2018-19,Man United,3,Possession,K-Means
+2018-19,Wolves,3,Possession,K-Means
+2018-19,Everton,3,Possession,K-Means
+2018-19,Leicester,3,Possession,K-Means
+2018-19,West Ham,3,Possession,K-Means
+2018-19,Watford,3,Possession,K-Means
+2018-19,Crystal Palace,3,Possession,K-Means
+2018-19,Newcastle,1,Pragmatic,K-Means
+2018-19,Bournemouth,3,Possession,K-Means
+2018-19,Burnley,1,Pragmatic,K-Means
+2018-19,Southampton,1,Pragmatic,K-Means
+2018-19,Brighton,1,Pragmatic,K-Means
+2018-19,Cardiff,1,Pragmatic,K-Means
+2018-19,Fulham,1,Pragmatic,K-Means
+2018-19,Huddersfield,1,Pragmatic,K-Means
+2019-20,Liverpool,4,Attacking,K-Means
+2019-20,Man City,4,Attacking,K-Means
+2019-20,Man United,3,Possession,K-Means
+2019-20,Chelsea,3,Possession,K-Means
+2019-20,Leicester,0,Defensive,K-Means
+2019-20,Tottenham,3,Possession,K-Means
+2019-20,Wolves,3,Possession,K-Means
+2019-20,Arsenal,3,Possession,K-Means
+2019-20,Sheffield United,0,Defensive,K-Means
+2019-20,Burnley,3,Possession,K-Means
+2019-20,Southampton,3,Possession,K-Means
+2019-20,Everton,1,Pragmatic,K-Means
+2019-20,Newcastle,1,Pragmatic,K-Means
+2019-20,Crystal Palace,1,Pragmatic,K-Means
+2019-20,Brighton,1,Pragmatic,K-Means
+2019-20,West Ham,1,Pragmatic,K-Means
+2019-20,Aston Villa,1,Pragmatic,K-Means
+2019-20,Bournemouth,1,Pragmatic,K-Means
+2019-20,Watford,1,Pragmatic,K-Means
+2019-20,Norwich,1,Pragmatic,K-Means
+2020-21,Man City,4,Attacking,K-Means
+2020-21,Man United,3,Possession,K-Means
+2020-21,Liverpool,4,Attacking,K-Means
+2020-21,Chelsea,4,Attacking,K-Means
+2020-21,Leicester,3,Possession,K-Means
+2020-21,West Ham,3,Possession,K-Means
+2020-21,Tottenham,3,Possession,K-Means
+2020-21,Arsenal,3,Possession,K-Means
+2020-21,Leeds,3,Possession,K-Means
+2020-21,Everton,3,Possession,K-Means
+2020-21,Aston Villa,3,Possession,K-Means
+2020-21,Newcastle,1,Pragmatic,K-Means
+2020-21,Wolves,1,Pragmatic,K-Means
+2020-21,Crystal Palace,1,Pragmatic,K-Means
+2020-21,Southampton,2,High-Press,K-Means
+2020-21,Brighton,1,Pragmatic,K-Means
+2020-21,Burnley,1,Pragmatic,K-Means
+2020-21,Fulham,1,Pragmatic,K-Means
+2020-21,West Brom,1,Pragmatic,K-Means
+2020-21,Sheffield United,1,Pragmatic,K-Means
+2021-22,Man City,4,Attacking,K-Means
+2021-22,Liverpool,4,Attacking,K-Means
+2021-22,Chelsea,4,Attacking,K-Means
+2021-22,Tottenham,3,Possession,K-Means
+2021-22,Arsenal,3,Possession,K-Means
+2021-22,Man United,3,Possession,K-Means
+2021-22,West Ham,3,Possession,K-Means
+2021-22,Leicester,3,Possession,K-Means
+2021-22,Brighton,1,Pragmatic,K-Means
+2021-22,Wolves,1,Pragmatic,K-Means
+2021-22,Newcastle,1,Pragmatic,K-Means
+2021-22,Crystal Palace,1,Pragmatic,K-Means
+2021-22,Brentford,1,Pragmatic,K-Means
+2021-22,Aston Villa,3,Possession,K-Means
+2021-22,Southampton,1,Pragmatic,K-Means
+2021-22,Everton,1,Pragmatic,K-Means
+2021-22,Leeds,1,Pragmatic,K-Means
+2021-22,Burnley,1,Pragmatic,K-Means
+2021-22,Watford,1,Pragmatic,K-Means
+2021-22,Norwich,1,Pragmatic,K-Means
+2022-23,Man City,4,Attacking,K-Means
+2022-23,Arsenal,4,Attacking,K-Means
+2022-23,Man United,3,Possession,K-Means
+2022-23,Newcastle,4,Attacking,K-Means
+2022-23,Liverpool,4,Attacking,K-Means
+2022-23,Brighton,3,Possession,K-Means
+2022-23,Aston Villa,3,Possession,K-Means
+2022-23,Tottenham,3,Possession,K-Means
+2022-23,Brentford,3,Possession,K-Means
+2022-23,Fulham,3,Possession,K-Means
+2022-23,Crystal Palace,1,Pragmatic,K-Means
+2022-23,Chelsea,1,Pragmatic,K-Means
+2022-23,Wolves,1,Pragmatic,K-Means
+2022-23,West Ham,1,Pragmatic,K-Means
+2022-23,Bournemouth,1,Pragmatic,K-Means
+2022-23,Nott'm Forest,1,Pragmatic,K-Means
+2022-23,Everton,1,Pragmatic,K-Means
+2022-23,Leicester,1,Pragmatic,K-Means
+2022-23,Leeds,1,Pragmatic,K-Means
+2022-23,Southampton,1,Pragmatic,K-Means
+2023-24,Man City,4,Attacking,K-Means
+2023-24,Arsenal,4,Attacking,K-Means
+2023-24,Liverpool,4,Attacking,K-Means
+2023-24,Aston Villa,3,Possession,K-Means
+2023-24,Tottenham,3,Possession,K-Means
+2023-24,Chelsea,3,Possession,K-Means
+2023-24,Newcastle,3,Possession,K-Means
+2023-24,Man United,3,Possession,K-Means
+2023-24,West Ham,3,Possession,K-Means
+2023-24,Crystal Palace,3,Possession,K-Means
+2023-24,Brighton,3,Possession,K-Means
+2023-24,Everton,1,Pragmatic,K-Means
+2023-24,Bournemouth,3,Possession,K-Means
+2023-24,Fulham,3,Possession,K-Means
+2023-24,Wolves,1,Pragmatic,K-Means
+2023-24,Brentford,1,Pragmatic,K-Means
+2023-24,Nott'm Forest,1,Pragmatic,K-Means
+2023-24,Luton,1,Pragmatic,K-Means
+2023-24,Burnley,1,Pragmatic,K-Means
+2023-24,Sheffield United,1,Pragmatic,K-Means
+2024-25,Liverpool,4,Attacking,K-Means
+2024-25,Arsenal,3,Possession,K-Means
+2024-25,Man City,4,Attacking,K-Means
+2024-25,Chelsea,3,Possession,K-Means
+2024-25,Newcastle,3,Possession,K-Means
+2024-25,Aston Villa,3,Possession,K-Means
+2024-25,Nott'm Forest,3,Possession,K-Means
+2024-25,Brighton,3,Possession,K-Means
+2024-25,Bournemouth,3,Possession,K-Means
+2024-25,Brentford,3,Possession,K-Means
+2024-25,Fulham,3,Possession,K-Means
+2024-25,Crystal Palace,3,Possession,K-Means
+2024-25,Everton,1,Pragmatic,K-Means
+2024-25,West Ham,1,Pragmatic,K-Means
+2024-25,Man United,1,Pragmatic,K-Means
+2024-25,Wolves,1,Pragmatic,K-Means
+2024-25,Tottenham,3,Possession,K-Means
+2024-25,Leicester,1,Pragmatic,K-Means
+2024-25,Ipswich,1,Pragmatic,K-Means
+2024-25,Southampton,1,Pragmatic,K-Means

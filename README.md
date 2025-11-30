@@ -1,21 +1,25 @@
 # ⚽ Premier League Standings Prediction
 
-A comprehensive machine learning project comparing **5 algorithms** across **2 business objectives** to predict Premier League outcomes using 25 seasons of historical data (2000-2025).
+A comprehensive machine learning project comparing **5 algorithms** across **3 business objectives** to predict Premier League outcomes using 25+ seasons of historical data (2000-2025).
 
 ## 📋 Project Overview
 
-This project implements two distinct business objectives for Premier League prediction:
-1. **Season Ranking Prediction** (Regression): Predict final league positions (1-20)
-2. **Match Outcome Prediction** (Classification): Predict individual match results (Home/Draw/Away)
+This project implements three distinct business objectives for Premier League prediction:
+1. **BO1: Season Ranking Prediction** (Regression): Predict final league positions (1-20)
+2. **BO2: Match Outcome Prediction** (Classification): Predict individual match results (Home/Draw/Away)
+3. **BO3: Team Tactical Segmentation** (Clustering): Identify playing style patterns
 
-Each business objective uses 5 algorithms with comprehensive GridSearchCV hyperparameter tuning, testing thousands of parameter combinations per model.
+Each business objective uses multiple algorithms with comprehensive hyperparameter tuning and real-world validation.
 
 ### 🎯 Key Achievements
 
-- ✅ **2 Business Objectives**: Season rankings + Match outcomes
-- ✅ **5 Algorithms Per BO**: Random Forest, Gradient Boosting, Decision Tree, KNN, SVM
-- ✅ **Comprehensive Tuning**: GridSearchCV with optimized parameter grids (100-600 combinations per model)
-- ✅ **25 Seasons of Data**: 500+ team-seasons, ~9,500 matches (2000-2025)
+- ✅ **3 Business Objectives**: Season rankings + Match outcomes + Team segmentation
+- ✅ **5 Algorithms (BO1 & BO2)**: Random Forest, Gradient Boosting, Decision Tree, KNN, SVM
+- ✅ **3 Clustering Algorithms (BO3)**: K-Means, GMM, DBSCAN
+- ✅ **Comprehensive Tuning**: GridSearchCV with optimized parameter grids
+- ✅ **25+ Seasons of Data**: 500+ team-seasons, ~9,500 matches (2000-2025)
+- ✅ **Real-World Validation**: 40% accuracy on actual 2025-26 season (120 matches)
+- ✅ **Enhanced Features**: 25 features including form, shot accuracy, discipline metrics
 
 ### 🏆 Business Objectives
 
@@ -48,18 +52,55 @@ Each business objective uses 5 algorithms with comprehensive GridSearchCV hyperp
 | Random Forest | 52.6% | 59.2% | ~0.76 | 324 |
 | Gradient Boosting | 42.8% | 57.4% | ~0.75 | 144 |
 
-**Baseline**: 33% (random guessing for 3-class problem)
+**Real-World Performance (2025-26 Season):**
+- **Overall Accuracy**: 40.00% (48/120 matches correct)
+- **Home Win**: 59.62% accuracy (31/52)
+- **Draw**: 21.05% accuracy (4/19) ⚠️ Needs improvement
+- **Away Win**: 26.53% accuracy (13/49) ⚠️ Needs improvement
+- **Baseline**: 33% (random guessing for 3-class problem)
 
-**Features**: 15 total (3 identifiers + 12 match statistics)
+**Enhanced Features**: 25 total (up from 15)
 - Team identifiers: HomeTeam, AwayTeam, Season
 - Match statistics: Shots, Shots on Target, Fouls, Corners, Yellow Cards, Red Cards (home and away)
+- **NEW - Form features (L5)**: Last 5 matches wins, goals scored/conceded for home/away
+- **NEW - Advanced metrics**: Shot accuracy, discipline index
 
-**Key Features**: 
-- Raw match statistics allow models to learn patterns directly
-- League average stats used for 2025-26 forecasting
-- All 380 fixtures predicted for 2025-26
-- Complete league table simulation from match predictions
-- Accounts for relegated/promoted teams with proper encodings
+**Key Insights**: 
+- Home wins predicted well (60% accuracy)
+- **Draw prediction needs major improvement** (only 21% accuracy)
+- Model overpredicts home advantage
+- High-confidence predictions sometimes fail dramatically (e.g., Man City vs Tottenham 0-4)
+- Validation results saved to `outputs/BO2_match_outcomes/prediction_validation.csv`
+
+#### **BO3: Team Tactical Segmentation** (Clustering)
+**Goal**: Identify distinct tactical playing styles
+
+**Dataset**: `team_season_aggregated.csv` (500+ team-seasons)
+
+**Algorithms Compared:**
+| Algorithm | Clusters | Silhouette Score | Key Strength |
+|-----------|----------|-----------------|--------------|
+| K-Means | 5 | ~0.45 | Clear tactical categories |
+| GMM | 5 | ~0.43 | Soft cluster boundaries (hybrid styles) |
+| DBSCAN | Variable | ~0.38 | Outlier detection |
+
+**Tactical Styles Identified:**
+1. **Attacking** - High goals, shots, possession (e.g., Man City, Liverpool)
+2. **Defensive** - Solid defense, counter-attack (e.g., Mourinho teams)
+3. **Possession** - Ball control, patient build-up (e.g., Arsenal)
+4. **High-Press** - Aggressive pressing, high intensity (e.g., Klopp's Liverpool)
+5. **Pragmatic** - Balanced, flexible approach (mid-table consistency)
+
+**Key Features**:
+- 18 tactical features (shots, fouls, corners, cards, win rates)
+- Unique style assignment (greedy matching algorithm)
+- Tactical evolution tracking over multiple seasons
+- Exports to `outputs/BO3_team_segmentation/team_style_clusters.csv`
+
+**Business Value**: 
+- Scouting: Match player profiles to compatible tactical systems
+- Coaching: Benchmark tactical approaches vs league patterns
+- Strategic planning: Track tactical evolution and identify successful patterns
 
 ## 📊 Data Source
 
@@ -99,15 +140,26 @@ pl-standings-prediction-project/
 ├── notebooks/                               # Jupyter notebooks
 │   ├── BO1_season_ranking_comparison.ipynb # Business Objective 1 ⭐
 │   ├── BO2_match_winner_comparison.ipynb   # Business Objective 2 ⭐
+│   ├── BO3_team_segmentation.ipynb         # Business Objective 3 ⭐
 │   ├── data_preprocessing.ipynb            # Data cleaning & aggregation
-│   └── exploratory_analysis.ipynb          # Data exploration
+│   ├── exploratory_analysis.ipynb          # Data exploration
+│   └── outputs/                             # Generated predictions
+│       ├── BO1_season_rankings/
+│       │   └── 2025-26_season_forecast.csv
+│       ├── BO2_match_outcomes/
+│       │   ├── 2025-26_match_predictions.csv
+│       │   └── prediction_validation.csv   # Real-world accuracy ⭐
+│       └── BO3_team_segmentation/
+│           └── team_style_clusters.csv
 │
 ├── docs/                                    # Documentation
 │   ├── tableau_comparatif.md               # Comparative analysis table
 │   └── conclusion_finale.md                # Final evaluation report
 │
 ├── scripts/                                 # Python automation scripts
-│   └── combine_datasets.py                 # Merge season files
+│   ├── combine_datasets.py                 # Merge season files
+│   ├── validate_predictions.py             # Compare predictions with actual results ⭐
+│   └── FBref_Data_Fetching.ipynb          # Advanced stats scraping (experimental)
 │
 └── README.md                                # Project documentation
 ```
@@ -117,15 +169,24 @@ pl-standings-prediction-project/
 **Business Objectives (Main Analysis):**
 - **`BO1_season_ranking_comparison.ipynb`**: 🏆 Season ranking prediction (Regression)
   - Predicts final league position (1-20) for each team
-  - 5 algorithms with GridSearchCV (1,000-5,000 combinations each)
+  - 5 algorithms with GridSearchCV
   - Evaluation: MAE, RMSE, R², accuracy within ±1/±2 positions
   - 2025-26 forecast with ensemble averaging
 
 - **`BO2_match_winner_comparison.ipynb`**: ⚽ Match outcome prediction (Classification)
   - Predicts Home Win, Draw, or Away Win for each match
-  - 5 algorithms with GridSearchCV (120-8,640 combinations each)
+  - 5 algorithms with GridSearchCV
+  - **Enhanced with 25 features** including form and advanced metrics
   - Evaluation: Accuracy, F1, ROC AUC, per-class performance
-  - Complete 380-match 2025-26 forecast with predicted league table
+  - Complete 380-match 2025-26 forecast
+  - **Real-world validation**: 40% accuracy on actual 2025-26 season results
+
+- **`BO3_team_segmentation.ipynb`**: 🎯 Tactical playstyle clustering (Unsupervised)
+  - Identifies 5 distinct tactical playing styles
+  - 3 clustering algorithms: K-Means, GMM, DBSCAN
+  - Unique style assignment with greedy matching
+  - Tracks tactical evolution across seasons
+  - Famous teams prioritized in visualizations
 
 **Supporting Notebooks:**
 - **`exploratory_analysis.ipynb`**: 🔍 Data exploration and visualization
@@ -183,6 +244,11 @@ pip install pandas numpy scikit-learn matplotlib seaborn jupyter
 jupyter notebook notebooks/
 ```
 
+4. **Validate predictions against real results**
+```bash
+python scripts/validate_predictions.py
+```
+
 ### 📊 Recommended Workflow
 
 1. **Explore the data**: `exploratory_analysis.ipynb`
@@ -193,7 +259,14 @@ jupyter notebook notebooks/
 4. **Run BO2**: `BO2_match_winner_comparison.ipynb`
    - Match outcome prediction (classification)
    - ~20-25 minutes to complete GridSearchCV
-5. **Review outputs**: Check generated forecasts and visualizations
+5. **Run BO3**: `BO3_team_segmentation.ipynb`
+   - Tactical playstyle clustering (unsupervised)
+   - ~5-10 minutes to complete
+6. **Validate predictions**: Run `python scripts/validate_predictions.py`
+   - Compares BO2 forecasts with actual 2025-26 season results
+   - Downloads real match results from football-data.co.uk
+   - Generates accuracy metrics and detailed comparison CSV
+7. **Review outputs**: Check generated forecasts in `notebooks/outputs/`
 
 ### ⏱️ Execution Time
 
@@ -219,14 +292,22 @@ jupyter notebook notebooks/
 ✅ **BO2: Match Outcome Prediction**  
 - **Best Model**: Random Forest (Test Accuracy: 59.2%, CV: 52.6%)
 - **Runner-up**: SVM RBF (Test Accuracy: 57.9%, CV: 57.1% - best generalization)
-- **Improvement**: 57-59% accuracy vs 33% baseline (76% improvement)
-- **Key Insight**: Raw match statistics (shots, fouls, corners, cards) provide crucial context
+- **Real-World Performance**: 40.00% accuracy on 2025-26 season (120 matches played)
+  - Home wins: 59.62% accuracy ✅
+  - Draws: 21.05% accuracy ❌ (major weakness)
+  - Away wins: 26.53% accuracy ⚠️
+- **Key Insight**: Enhanced with 25 features (form, shot accuracy, discipline)
 - **2025-26 Forecast**: All 380 matches predicted with complete league table
-  - Includes all 20 teams with correct encodings
-  - Uses league average stats for forecasting
-  - Simulates entire season from individual match predictions
-- **Innovation**: 15-feature model (expanded from 3) with match statistics
+- **Innovation**: Real-world validation against ongoing season
 - **Business Value**: Betting analysis, match previews, fan engagement
+
+✅ **BO3: Team Tactical Segmentation**
+- **Best Algorithm**: K-Means (Silhouette: ~0.45)
+- **Clusters**: 5 distinct tactical styles (Attacking, Defensive, Possession, High-Press, Pragmatic)
+- **Key Insight**: Unique style assignment ensures no duplicate labels
+- **Innovation**: Tracks tactical evolution across multiple seasons
+- **Famous Teams**: Prioritized in visualizations (Man City, Liverpool, Arsenal, etc.)
+- **Business Value**: Scouting compatibility, tactical benchmarking, strategic planning
 
 ### Hyperparameter Tuning Impact
 
@@ -285,8 +366,12 @@ This project was developed as part of a Machine Learning course focusing on:
 
 **BO2**: `processed_premier_league_combined.csv` (~9,500 matches)
 - Match-level data from 2000-2025
-- 15 features: Home Team, Away Team, Season + 12 match statistics (shots, shots on target, fouls, corners, yellow cards, red cards)
+- 25 enhanced features: Team identifiers, match statistics, form (L5), shot accuracy, discipline
 - Target: Match outcome (Home Win/Draw/Away Win)
+
+**BO3**: `team_season_aggregated.csv` (500+ team-seasons)
+- 18 tactical features: Shots, fouls, corners, cards, win rates, efficiency metrics
+- Clustering: 5 tactical playing styles
 
 ---
 **⚠️ Note**: This project is for educational and research purposes. Predictions should not be used for commercial betting or gambling activities.

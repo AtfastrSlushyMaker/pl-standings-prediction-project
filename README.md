@@ -4,22 +4,24 @@ A comprehensive machine learning project comparing **5 algorithms** across **3 b
 
 ## 📋 Project Overview
 
-This project implements three distinct business objectives for Premier League prediction:
+This project implements four distinct business objectives for Premier League analysis:
 1. **BO1: Season Ranking Prediction** (Regression): Predict final league positions (1-20)
 2. **BO2: Match Outcome Prediction** (Classification): Predict individual match results (Home/Draw/Away)
 3. **BO3: Team Tactical Segmentation** (Clustering): Identify playing style patterns
+4. **BO4: Player Recommendation System** (Ranking): Recommend top rising stars based on performance and market value
 
 Each business objective uses multiple algorithms with comprehensive hyperparameter tuning and real-world validation.
 
 ### 🎯 Key Achievements
 
-- ✅ **3 Business Objectives**: Season rankings + Match outcomes + Team segmentation
+- ✅ **4 Business Objectives**: Season rankings + Match outcomes + Team segmentation + Player recommendations
 - ✅ **5 Algorithms (BO1 & BO2)**: Random Forest, Gradient Boosting, Decision Tree, KNN, SVM
 - ✅ **3 Clustering Algorithms (BO3)**: K-Means, GMM, DBSCAN
+- ✅ **3 Ranking Models (BO4)**: Random Forest Regressor, XGBoost, LightGBM
 - ✅ **Comprehensive Tuning**: GridSearchCV with optimized parameter grids
 - ✅ **25+ Seasons of Data**: 500+ team-seasons, ~9,500 matches (2000-2025)
 - ✅ **Real-World Validation**: 40% accuracy on actual 2025-26 season (120 matches)
-- ✅ **Enhanced Features**: 25 features including form, shot accuracy, discipline metrics
+- ✅ **Enhanced Features**: 25+ features including form, shot accuracy, discipline, per-90 metrics
 
 ### 🏆 Business Objectives
 
@@ -102,6 +104,66 @@ Each business objective uses multiple algorithms with comprehensive hyperparamet
 - Coaching: Benchmark tactical approaches vs league patterns
 - Strategic planning: Track tactical evolution and identify successful patterns
 
+#### **BO4: Player Recommendation System** (Ranking/Regression)
+**Goal**: Recommend top 10 rising stars per position based on performance quality and market value efficiency
+
+**Dataset**: `players_24-25.csv` (2024-25 season player statistics with market values)
+
+**Filtering Criteria:**
+- Rising stars only: Age < 23 years (outfield), < 26 years (goalkeepers)
+- Minimum playing time: ≥90 minutes (at least 1 full match)
+- Must have market value data available
+- Duplicate handling: Keep player with highest minutes played
+
+**Algorithms Compared:**
+| Model | Type | Strengths | Use Case |
+|-------|------|-----------|----------|
+| Random Forest | Regressor | Baseline, robust | General recommendations |
+| XGBoost | Regressor | High accuracy, feature importance | Performance-focused scouting |
+| LightGBM | Regressor | Fast training, excellent accuracy | Production deployment ⭐ |
+
+**Position-Specific Features:**
+- **Defenders**: Tackles/90, Interceptions/90, Clearances, Pass completion, Goals/Assists per 90
+- **Midfielders**: Goals/90, Assists/90, Key passes, Progressive passes, Pass completion, Tackles/Interceptions
+- **Forwards**: Goals/90, Assists/90, Shots, Shots on Target, Shot accuracy, Goals per shot
+- **Goalkeepers**: Save%, Goals Against per 90, Clean Sheet%, PSxG (Post-Shot Expected Goals)
+
+**Performance Metrics:**
+- **Performance Score**: Position-specific weighted composite (0-10 scale)
+  - Defenders: 30% tackles + 30% interceptions + 15% clearances + 15% passing + 10% G+A
+  - Midfielders: 25% goals + 30% assists + 20% key passes + 15% passing + 10% defensive
+  - Forwards: 50% goals + 25% assists + 15% shot accuracy + 10% finishing
+  - Goalkeepers: 50% save% + 30% goals against + 20% clean sheets
+- **Value Efficiency**: Performance per million euros (identifies bargains)
+- **Market Value**: Baseline financial consideration
+
+**Top 10 Recommendations Per Position:**
+- Ranked by predicted performance score (LightGBM model)
+- Balanced between raw performance and market value
+- Consensus analysis: Players appearing in all 3 model recommendations
+- Model agreement visualization: Overlap between RF, XGBoost, and LightGBM
+
+**Key Insights:**
+- LightGBM recommended for production (fastest training, excellent accuracy)
+- Model consensus varies by position (70-90% overlap between top models)
+- Value efficiency identifies underpriced talent opportunities
+- Age distribution: Most recommendations are 18-21 years old
+- Squad diversity: Top talent distributed across multiple clubs
+
+**Business Value:**
+- **Recruitment**: Data-driven scouting with performance + value optimization
+- **Youth Development**: Benchmark rising stars against position-specific KPIs
+- **Transfer Strategy**: Identify undervalued talent before market inflation
+- **Squad Planning**: Age-appropriate investments for long-term team building
+- **Financial Intelligence**: Balance performance quality with budget constraints
+
+**Outputs:**
+- `outputs/BO4_player_recommendation/top10_defenders.csv`
+- `outputs/BO4_player_recommendation/top10_midfielders.csv`
+- `outputs/BO4_player_recommendation/top10_forwards.csv`
+- `outputs/BO4_player_recommendation/top10_goalkeepers.csv`
+- `outputs/BO4_player_recommendation/top10_all_positions.csv` (combined)
+
 ## 📊 Data Source
 
 The historical match data used in this project is obtained from **Football Datasets**, a comprehensive repository of football-related datasets.
@@ -125,6 +187,8 @@ pl-standings-prediction-project/
 │   ├── raw/                                 # Original datasets
 │   │   ├── combined/
 │   │   │   ├── premier_league_combined.csv # All seasons combined
+│   │   │   ├── player_performance_value/
+│   │   │   │   └── players_24-25.csv       # For BO4 (player stats + market values) ⭐
 │   │   │   └── README.md
 │   │   └── uncombined/                     # Individual season files
 │   │       ├── season-2324.csv
@@ -141,6 +205,7 @@ pl-standings-prediction-project/
 │   ├── BO1_season_ranking_comparison.ipynb # Business Objective 1 ⭐
 │   ├── BO2_match_winner_comparison.ipynb   # Business Objective 2 ⭐
 │   ├── BO3_team_segmentation.ipynb         # Business Objective 3 ⭐
+│   ├── BO4_players_reccomendation.ipynb    # Business Objective 4 ⭐
 │   ├── data_preprocessing.ipynb            # Data cleaning & aggregation
 │   ├── exploratory_analysis.ipynb          # Data exploration
 │   └── outputs/                             # Generated predictions
@@ -149,8 +214,14 @@ pl-standings-prediction-project/
 │       ├── BO2_match_outcomes/
 │       │   ├── 2025-26_match_predictions.csv
 │       │   └── prediction_validation.csv   # Real-world accuracy ⭐
-│       └── BO3_team_segmentation/
-│           └── team_style_clusters.csv
+│       ├── BO3_team_segmentation/
+│       │   └── team_style_clusters.csv
+│       └── BO4_player_recommendation/
+│           ├── top10_defenders.csv
+│           ├── top10_midfielders.csv
+│           ├── top10_forwards.csv
+│           ├── top10_goalkeepers.csv
+│           └── top10_all_positions.csv    # Combined top 40 ⭐
 │
 ├── docs/                                    # Documentation
 │   ├── tableau_comparatif.md               # Comparative analysis table
@@ -188,6 +259,16 @@ pl-standings-prediction-project/
   - Tracks tactical evolution across seasons
   - Famous teams prioritized in visualizations
 
+- **`BO4_players_reccomendation.ipynb`**: ⭐ Player recommendation system (Ranking)
+  - Recommends top 10 rising stars per position (Defender, Midfielder, Forward, Goalkeeper)
+  - 3 machine learning models: Random Forest, XGBoost, LightGBM
+  - Filters: Age < 23 (outfield) / < 26 (GK), minimum 90 minutes played
+  - Position-specific performance features (per-90 metrics, efficiency ratios)
+  - Evaluation: Performance score prediction, value efficiency analysis
+  - Model comparison: Consensus analysis and overlap visualization
+  - Comprehensive visualizations: Market value distribution, performance vs value scatter plots
+  - Exports top 10 recommendations per position with market value and predicted scores
+
 **Supporting Notebooks:**
 - **`exploratory_analysis.ipynb`**: 🔍 Data exploration and visualization
 - **`data_preprocessing.ipynb`**: 🧹 Data cleaning and feature engineering
@@ -213,7 +294,7 @@ source venv/bin/activate
 ### 📦 Install Required Packages
 
 ```bash
-pip install pandas numpy matplotlib seaborn scikit-learn jupyter plotly
+pip install pandas numpy matplotlib seaborn scikit-learn jupyter plotly xgboost lightgbm scipy
 ```
 
 ### 🔧 Core Dependencies
@@ -225,6 +306,9 @@ pip install pandas numpy matplotlib seaborn scikit-learn jupyter plotly
 - **scikit-learn**: 🤖 Machine learning algorithms and tools
 - **jupyter**: 📓 Interactive notebook environment
 - **plotly**: 📈 Interactive visualizations (optional)
+- **xgboost**: 🚀 Gradient boosting framework (for BO4)
+- **lightgbm**: ⚡ Fast gradient boosting (for BO4)
+- **scipy**: 🔬 Scientific computing (for BO4 hyperparameter tuning)
 
 ## 🚀 Quick Start
 
@@ -236,7 +320,7 @@ cd pl-standings-prediction-project
 
 2. **Install dependencies**
 ```bash
-pip install pandas numpy scikit-learn matplotlib seaborn jupyter
+pip install pandas numpy scikit-learn matplotlib seaborn jupyter xgboost lightgbm scipy
 ```
 
 3. **Run the business objective notebooks**
@@ -262,11 +346,14 @@ python scripts/validate_predictions.py
 5. **Run BO3**: `BO3_team_segmentation.ipynb`
    - Tactical playstyle clustering (unsupervised)
    - ~5-10 minutes to complete
-6. **Validate predictions**: Run `python scripts/validate_predictions.py`
+6. **Run BO4**: `BO4_players_reccomendation.ipynb`
+   - Player recommendation system (ranking)
+   - ~3-5 minutes to complete (RandomizedSearchCV + 3 models)
+7. **Validate predictions**: Run `python scripts/validate_predictions.py`
    - Compares BO2 forecasts with actual 2025-26 season results
    - Downloads real match results from football-data.co.uk
    - Generates accuracy metrics and detailed comparison CSV
-7. **Review outputs**: Check generated forecasts in `notebooks/outputs/`
+8. **Review outputs**: Check generated forecasts in `notebooks/outputs/`
 
 ### ⏱️ Execution Time
 
@@ -308,6 +395,20 @@ python scripts/validate_predictions.py
 - **Innovation**: Tracks tactical evolution across multiple seasons
 - **Famous Teams**: Prioritized in visualizations (Man City, Liverpool, Arsenal, etc.)
 - **Business Value**: Scouting compatibility, tactical benchmarking, strategic planning
+
+✅ **BO4: Player Recommendation System**
+- **Best Model**: LightGBM (fast training, excellent accuracy, production-ready)
+- **Coverage**: Top 10 rising stars per position (40 total recommendations)
+- **Age Profile**: 18-22 years (outfield), 20-25 years (goalkeepers)
+- **Model Agreement**: 70-90% consensus between RF, XGBoost, and LightGBM recommendations
+- **Key Metrics**: 
+  - Performance Score (position-specific weighted composite)
+  - Value Efficiency (performance per million euros)
+  - Market Value (baseline financial consideration)
+- **Key Insight**: Balance between raw performance and financial value identifies optimal recruitment targets
+- **Innovation**: Position-specific feature engineering with per-90 metrics and efficiency ratios
+- **Data Source**: 2024-25 Premier League player statistics with market valuations
+- **Business Value**: Data-driven recruitment, youth development benchmarking, transfer strategy optimization
 
 ### Hyperparameter Tuning Impact
 
@@ -372,6 +473,13 @@ This project was developed as part of a Machine Learning course focusing on:
 **BO3**: `team_season_aggregated.csv` (500+ team-seasons)
 - 18 tactical features: Shots, fouls, corners, cards, win rates, efficiency metrics
 - Clustering: 5 tactical playing styles
+
+**BO4**: `players_24-25.csv` (2024-25 Premier League players)
+- Player statistics with market valuations from 2024-25 season
+- Filtered: Age < 23 (outfield) / < 26 (GK), min 90 minutes played
+- Position-specific features: Per-90 metrics, efficiency ratios, productivity scores
+- Target: Performance score prediction for ranking
+- Output: Top 10 recommendations per position (40 total)
 
 ---
 **⚠️ Note**: This project is for educational and research purposes. Predictions should not be used for commercial betting or gambling activities.

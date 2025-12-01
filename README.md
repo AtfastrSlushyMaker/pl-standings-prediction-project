@@ -12,26 +12,25 @@ This project implements four distinct business objectives for Premier League ana
 
 Each business objective uses multiple algorithms with comprehensive hyperparameter tuning and real-world validation.
 
-### 🌐 Web Application
+### 🌐 Web Application - "The 12th Player"
 
-**Production-ready models and API specs!** This repo includes:
-- **9 trained models** exported as `.pkl` and `.json` files in `models/`
-  - 1 BO1 model (KNN for season rankings)
-  - 1 BO2 model (Random Forest for match outcomes)
-  - 1 BO3 model (KMeans for team clustering)
-  - 4 BO4 models (LightGBM per position)
-  - 2 reference files (teams.json, team_encoding.json)
-- **Backend API specs** in `api/README.md` (4 endpoints)
-- **Integration guide** in `api/INTEGRATION.md`
-- **Preprocessing utilities** in `scripts/preprocessing.py`
+**✅ LIVE DEPLOYMENT**: [the-12th-player-app.onrender.com](https://the-12th-player-app.onrender.com)
 
-**Deployment Strategy**:
-- Create separate webapp repo: `pl-standings-webapp/` (monorepo with backend + frontend)
-- Copy `models/*.pkl` and `models/*.json` to webapp's `backend/models/`
-- Build FastAPI backend using `api/` specs
-- Deploy backend → Railway/Render, frontend → Vercel
+Full-stack web application serving all 4 ML models through a FastAPI backend and React frontend.
 
-See `api/INTEGRATION.md` for complete setup instructions.
+**Webapp Repository**: [github.com/AtfastrSlushyMaker/the-12th-player](https://github.com/AtfastrSlushyMaker/the-12th-player)
+
+**Architecture**:
+- **Backend**: FastAPI on Render (loads 9 exported models)
+- **Frontend**: React + TypeScript + Tailwind CSS
+- **Models**: All `.pkl` and `.json` files from `models/` directory
+- **Features**: 4 prediction endpoints (season rankings, match outcomes, team styles, player recommendations)
+
+**This ML Repo Provides**:
+- ✅ 9 trained models in `models/` directory
+- ✅ Training notebooks in `notebooks/` 
+- ✅ Data preprocessing scripts
+- ✅ Model performance documentation
 
 ### 🎯 Key Achievements
 

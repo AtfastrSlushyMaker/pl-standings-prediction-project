@@ -1,0 +1,26 @@
+{
+  "encoding": {
+    "Arsenal": 0,
+    "Aston Villa": 1,
+    "Bournemouth": 6,
+    "Brentford": 8,
+    "Brighton": 9,
+    "Burnley": 10,
+    "Chelsea": 13,
+    "Crystal Palace": 15,
+    "Everton": 17,
+    "Fulham": 18,
+    "Leeds": 22,
+    "Liverpool": 24,
+    "Man City": 26,
+    "Man United": 27,
+    "Newcastle": 29,
+    "Nott'm Forest": 31,
+    "Sunderland": 38,
+    "Tottenham": 40,
+    "West Ham": 43,
+    "Wolves": 45
+  },
+  "total_teams": 20,
+  "note": "LabelEncoder mapping used in BO2 model"
+}

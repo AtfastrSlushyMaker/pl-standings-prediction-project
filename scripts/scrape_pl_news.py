@@ -33,7 +33,7 @@ class PLNewsScraper:
         
     def scrape_bbc_sport(self, limit=10):
         """
-        Scrape BBC Sport Premier League RSS feed (Tier 1)
+        Scrape BBC Sport Premier League RSS feed
         """
         print("🔄 Scraping BBC Sport...")
         try:
@@ -48,8 +48,6 @@ class PLNewsScraper:
                     'summary': entry.summary if hasattr(entry, 'summary') else '',
                     'text': entry.summary if hasattr(entry, 'summary') else entry.title,
                     'source': 'BBC Sport',
-                    'tier': 1,
-                    'tier_label': 'Tier 1 - Official',
                     'scraped_at': datetime.now().isoformat()
                 }
                 self.articles.append(article)
@@ -63,7 +61,7 @@ class PLNewsScraper:
     
     def scrape_sky_sports(self, limit=10):
         """
-        Scrape Sky Sports Premier League news - ENHANCED with multiple endpoints (Tier 1)
+        Scrape Sky Sports Premier League news - ENHANCED with multiple endpoints
         """
         print("🔄 Scraping Sky Sports (Enhanced Multi-Source)...")
         articles_found = []
@@ -96,8 +94,6 @@ class PLNewsScraper:
                                     'summary': title,
                                     'text': title,
                                     'source': 'Sky Sports',
-                                    'tier': 1,
-                                    'tier_label': 'Tier 1 - Official',
                                     'scraped_at': datetime.now().isoformat()
                                 }
                                 articles_found.append(article)
@@ -123,7 +119,7 @@ class PLNewsScraper:
     
     def scrape_guardian_football(self, limit=10):
         """
-        Scrape The Guardian football RSS (Tier 2)
+        Scrape The Guardian football RSS
         """
         print("🔄 Scraping The Guardian...")
         try:
@@ -138,8 +134,6 @@ class PLNewsScraper:
                     'summary': entry.summary if hasattr(entry, 'summary') else '',
                     'text': entry.summary if hasattr(entry, 'summary') else entry.title,
                     'source': 'The Guardian',
-                    'tier': 2,
-                    'tier_label': 'Tier 2 - Reliable',
                     'scraped_at': datetime.now().isoformat()
                 }
                 self.articles.append(article)
@@ -153,7 +147,7 @@ class PLNewsScraper:
     
     def scrape_espn_football(self, limit=10):
         """
-        Scrape ESPN Football RSS (Tier 2)
+        Scrape ESPN Football RSS
         """
         print("🔄 Scraping ESPN...")
         try:
@@ -172,8 +166,6 @@ class PLNewsScraper:
                         'summary': entry.summary if hasattr(entry, 'summary') else '',
                         'text': entry.summary if hasattr(entry, 'summary') else entry.title,
                         'source': 'ESPN',
-                        'tier': 2,
-                        'tier_label': 'Tier 2 - Reliable',
                         'scraped_at': datetime.now().isoformat()
                     }
                     pl_articles.append(article)
@@ -190,7 +182,7 @@ class PLNewsScraper:
     
     def scrape_dailymail_football(self, limit=10):
         """
-        Scrape Daily Mail football RSS (Tier 3)
+        Scrape Daily Mail football RSS
         """
         print("🔄 Scraping Daily Mail...")
         try:
@@ -209,8 +201,6 @@ class PLNewsScraper:
                         'summary': entry.summary if hasattr(entry, 'summary') else '',
                         'text': entry.summary if hasattr(entry, 'summary') else entry.title,
                         'source': 'Daily Mail',
-                        'tier': 3,
-                        'tier_label': 'Tier 3 - Tabloid',
                         'scraped_at': datetime.now().isoformat()
                     }
                     pl_articles.append(article)
@@ -228,8 +218,7 @@ class PLNewsScraper:
     def scrape_google_news(self, limit=20):
         """
         Scrape Google News for Premier League stories
-        NOTE: Google News is an aggregator - tier varies by original source
-        We'll classify as 'Mixed' since it pulls from all tiers
+        NOTE: Google News is an aggregator with mixed sources
         """
         print("🔄 Scraping Google News (Aggregator - Mixed Sources)...")
         try:
@@ -242,10 +231,6 @@ class PLNewsScraper:
                 title_parts = entry.title.split(' - ')
                 original_source = title_parts[-1] if len(title_parts) > 1 else 'Unknown'
                 
-                # Determine tier based on detected source
-                tier = self._classify_source_tier(original_source)
-                tier_label = self._get_tier_label(tier)
-                
                 article = {
                     'title': title_parts[0] if len(title_parts) > 1 else entry.title,
                     'link': entry.link,
@@ -254,8 +239,6 @@ class PLNewsScraper:
                     'text': entry.get('summary', entry.title),
                     'source': f'Google News ({original_source})',
                     'original_source': original_source,
-                    'tier': tier,
-                    'tier_label': tier_label,
                     'scraped_at': datetime.now().isoformat()
                 }
                 pl_articles.append(article)
@@ -268,49 +251,9 @@ class PLNewsScraper:
             print(f"❌ Error scraping Google News: {e}")
             return False
     
-    def _classify_source_tier(self, source_name):
-        """
-        Classify source tier based on known source names
-        """
-        source_lower = source_name.lower()
-        
-        # Tier 1: Official sources
-        if any(s in source_lower for s in ['bbc', 'sky sports', 'premier league', 'official']):
-            return 1
-        
-        # Tier 2: Reliable outlets
-        elif any(s in source_lower for s in ['guardian', 'telegraph', 'independent', 'espn', 
-                                               'athletic', 'reuters', 'ap news', 'goal.com',
-                                               'talksport', 'bt sport', 'bein']):
-            return 2
-        
-        # Tier 3: Tabloids
-        elif any(s in source_lower for s in ['daily mail', 'mail', 'sun', 'mirror', 'express',
-                                              '90min', 'football.london', 'metro']):
-            return 3
-        
-        # Tier 4: Clickbait/Low quality
-        elif any(s in source_lower for s in ['givemesport', 'caughtoffside', 'sportbible']):
-            return 4
-        
-        # Default to Tier 3 for unknown sources
-        else:
-            return 3
-    
-    def _get_tier_label(self, tier):
-        """Get tier label from tier number"""
-        labels = {
-            1: 'Tier 1 - Official',
-            2: 'Tier 2 - Reliable',
-            3: 'Tier 3 - Tabloid',
-            4: 'Tier 4 - Clickbait',
-            5: 'Tier 5 - Fake'
-        }
-        return labels.get(tier, 'Tier 3 - Tabloid')
-    
     def scrape_bein_sports(self, limit=10):
         """
-        Scrape beIN Sports (Tier 2)
+        Scrape beIN Sports
         """
         print("🔄 Scraping beIN Sports...")
         try:
@@ -337,8 +280,6 @@ class PLNewsScraper:
                             'summary': title,
                             'text': title,
                             'source': 'beIN Sports',
-                            'tier': 2,
-                            'tier_label': 'Tier 2 - Reliable',
                             'scraped_at': datetime.now().isoformat()
                         }
                         articles_found.append(article)
@@ -353,7 +294,7 @@ class PLNewsScraper:
     
     def scrape_bt_sport(self, limit=10):
         """
-        Scrape BT Sport (Tier 2)
+        Scrape BT Sport
         """
         print("🔄 Scraping BT Sport...")
         try:
@@ -379,8 +320,6 @@ class PLNewsScraper:
                             'summary': title,
                             'text': title,
                             'source': 'BT Sport',
-                            'tier': 2,
-                            'tier_label': 'Tier 2 - Reliable',
                             'scraped_at': datetime.now().isoformat()
                         }
                         articles_found.append(article)
@@ -395,7 +334,7 @@ class PLNewsScraper:
     
     def scrape_telegraph(self, limit=10):
         """
-        Scrape The Telegraph football (Tier 2)
+        Scrape The Telegraph football
         """
         print("🔄 Scraping The Telegraph...")
         try:
@@ -416,8 +355,6 @@ class PLNewsScraper:
                         'summary': title,
                         'text': title,
                         'source': 'The Telegraph',
-                        'tier': 2,
-                        'tier_label': 'Tier 2 - Reliable',
                         'scraped_at': datetime.now().isoformat()
                     }
                     articles_found.append(article)
@@ -432,7 +369,7 @@ class PLNewsScraper:
     
     def scrape_independent(self, limit=10):
         """
-        Scrape The Independent football (Tier 2)
+        Scrape The Independent football
         """
         print("🔄 Scraping The Independent...")
         try:
@@ -453,8 +390,6 @@ class PLNewsScraper:
                         'summary': title,
                         'text': title,
                         'source': 'The Independent',
-                        'tier': 2,
-                        'tier_label': 'Tier 2 - Reliable',
                         'scraped_at': datetime.now().isoformat()
                     }
                     articles_found.append(article)
@@ -471,7 +406,7 @@ class PLNewsScraper:
     
     def scrape_the_sun(self, limit=10):
         """
-        Scrape The Sun football (Tier 3)
+        Scrape The Sun football
         """
         print("🔄 Scraping The Sun...")
         try:
@@ -492,8 +427,6 @@ class PLNewsScraper:
                         'summary': title,
                         'text': title,
                         'source': 'The Sun',
-                        'tier': 3,
-                        'tier_label': 'Tier 3 - Tabloid',
                         'scraped_at': datetime.now().isoformat()
                     }
                     articles_found.append(article)
@@ -510,7 +443,7 @@ class PLNewsScraper:
     
     def scrape_mirror(self, limit=10):
         """
-        Scrape Mirror football (Tier 3)
+        Scrape Mirror football
         """
         print("🔄 Scraping Mirror...")
         try:
@@ -531,8 +464,6 @@ class PLNewsScraper:
                         'summary': title,
                         'text': title,
                         'source': 'Mirror',
-                        'tier': 3,
-                        'tier_label': 'Tier 3 - Tabloid',
                         'scraped_at': datetime.now().isoformat()
                     }
                     articles_found.append(article)
@@ -549,7 +480,7 @@ class PLNewsScraper:
     
     def scrape_goal_com(self, limit=10):
         """
-        Scrape Goal.com (Tier 2)
+        Scrape Goal.com
         """
         print("🔄 Scraping Goal.com...")
         try:
@@ -570,8 +501,6 @@ class PLNewsScraper:
                         'summary': title,
                         'text': title,
                         'source': 'Goal.com',
-                        'tier': 2,
-                        'tier_label': 'Tier 2 - Reliable',
                         'scraped_at': datetime.now().isoformat()
                     }
                     articles_found.append(article)
@@ -588,7 +517,7 @@ class PLNewsScraper:
     
     def scrape_90min(self, limit=10):
         """
-        Scrape 90min (Tier 3-4)
+        Scrape 90min
         """
         print("🔄 Scraping 90min...")
         try:
@@ -609,8 +538,6 @@ class PLNewsScraper:
                         'summary': title,
                         'text': title,
                         'source': '90min',
-                        'tier': 3,
-                        'tier_label': 'Tier 3 - Tabloid',
                         'scraped_at': datetime.now().isoformat()
                     }
                     articles_found.append(article)
@@ -627,7 +554,7 @@ class PLNewsScraper:
     
     def scrape_givemesport(self, limit=10):
         """
-        Scrape GiveMeSport (Tier 4)
+        Scrape GiveMeSport
         """
         print("🔄 Scraping GiveMeSport...")
         try:
@@ -648,8 +575,6 @@ class PLNewsScraper:
                         'summary': title,
                         'text': title,
                         'source': 'GiveMeSport',
-                        'tier': 4,
-                        'tier_label': 'Tier 4 - Clickbait',
                         'scraped_at': datetime.now().isoformat()
                     }
                     articles_found.append(article)
@@ -666,7 +591,7 @@ class PLNewsScraper:
     
     def scrape_talksport(self, limit=10):
         """
-        Scrape TalkSport - ENHANCED with RSS feed (Tier 2)
+        Scrape TalkSport - ENHANCED with RSS feed
         """
         print("🔄 Scraping TalkSport (Enhanced RSS + Web)...")
         articles_found = []
@@ -686,8 +611,6 @@ class PLNewsScraper:
                             'summary': entry.get('summary', entry.title)[:300],
                             'text': entry.get('summary', entry.title),
                             'source': 'TalkSport',
-                            'tier': 2,
-                            'tier_label': 'Tier 2 - Reliable',
                             'scraped_at': datetime.now().isoformat()
                         }
                         articles_found.append(article)
@@ -720,8 +643,6 @@ class PLNewsScraper:
                                     'summary': title,
                                     'text': title,
                                     'source': 'TalkSport',
-                                    'tier': 2,
-                                    'tier_label': 'Tier 2 - Reliable',
                                     'scraped_at': datetime.now().isoformat()
                                 }
                                 articles_found.append(article)
@@ -746,7 +667,7 @@ class PLNewsScraper:
     
     def scrape_football_london(self, limit=10):
         """
-        Scrape Football.London (Tier 2-3)
+        Scrape Football.London
         """
         print("🔄 Scraping Football.London...")
         try:
@@ -767,8 +688,6 @@ class PLNewsScraper:
                         'summary': title,
                         'text': title,
                         'source': 'Football.London',
-                        'tier': 3,
-                        'tier_label': 'Tier 3 - Tabloid',
                         'scraped_at': datetime.now().isoformat()
                     }
                     articles_found.append(article)
@@ -785,7 +704,7 @@ class PLNewsScraper:
     
     def scrape_express(self, limit=10):
         """
-        Scrape Express football (Tier 3)
+        Scrape Express football
         """
         print("🔄 Scraping Express...")
         try:
@@ -806,8 +725,6 @@ class PLNewsScraper:
                         'summary': title,
                         'text': title,
                         'source': 'Express',
-                        'tier': 3,
-                        'tier_label': 'Tier 3 - Tabloid',
                         'scraped_at': datetime.now().isoformat()
                     }
                     articles_found.append(article)
@@ -855,8 +772,6 @@ class PLNewsScraper:
                             'summary': text,
                             'text': text,
                             'source': 'Twitter/X',
-                            'tier': 4,  # Social media - varies greatly
-                            'tier_label': 'Tier 4 - Social Media',
                             'scraped_at': datetime.now().isoformat()
                         }
                         articles_found.append(article)
@@ -946,8 +861,6 @@ class PLNewsScraper:
                                     'summary': post_data.get('selftext', title)[:300],
                                     'text': post_data.get('selftext', title),
                                     'source': f'Reddit (r/{subreddit})',
-                                    'tier': 4,
-                                    'tier_label': 'Tier 4 - Social Media',
                                     'scraped_at': datetime.now().isoformat()
                                 }
                                 articles_found.append(article)
@@ -996,8 +909,6 @@ class PLNewsScraper:
                             'summary': post_data.get('selftext', title)[:300],
                             'text': post_data.get('selftext', title),
                             'source': 'Reddit (r/FantasyPL)',
-                            'tier': 4,
-                            'tier_label': 'Tier 4 - Social Media',
                             'scraped_at': datetime.now().isoformat()
                         }
                         articles_found.append(article)
@@ -1017,30 +928,30 @@ class PLNewsScraper:
         Scrape Ben Crellin (Fixture difficulty expert) via Nitter
         """
         print("🔄 Scraping Twitter: Ben Crellin (Fixtures)...")
-        return self._scrape_twitter_via_nitter('BenCrellin', limit, tier=2, label='Tier 2 - Reliable')
+        return self._scrape_twitter_via_nitter('BenCrellin', limit)
     
     def scrape_twitter_fabrizio(self, limit=10):
         """
         Scrape Fabrizio Romano (Transfer news) via Nitter
         """
         print("🔄 Scraping Twitter: Fabrizio Romano (Transfers)...")
-        return self._scrape_twitter_via_nitter('FabrizioRomano', limit, tier=2, label='Tier 2 - Reliable')
+        return self._scrape_twitter_via_nitter('FabrizioRomano', limit)
     
     def scrape_twitter_ornstein(self, limit=10):
         """
         Scrape David Ornstein (The Athletic) via Nitter
         """
         print("🔄 Scraping Twitter: David Ornstein (The Athletic)...")
-        return self._scrape_twitter_via_nitter('David_Ornstein', limit, tier=2, label='Tier 2 - Reliable')
+        return self._scrape_twitter_via_nitter('David_Ornstein', limit)
     
     def scrape_twitter_underdog(self, limit=10):
         """
         Scrape Underdog Soccer via Nitter
         """
         print("🔄 Scraping Twitter: @underdog_soccer...")
-        return self._scrape_twitter_via_nitter('underdog_soccer', limit, tier=3, label='Tier 3 - Tabloid')
+        return self._scrape_twitter_via_nitter('underdog_soccer', limit)
     
-    def _scrape_twitter_via_nitter(self, username, limit, tier, label):
+    def _scrape_twitter_via_nitter(self, username, limit):
         """
         Helper function to scrape Twitter via multiple methods
         """
@@ -1073,8 +984,6 @@ class PLNewsScraper:
                                     'summary': entry.get('summary', title)[:300],
                                     'text': entry.get('summary', title),
                                     'source': f'Twitter (@{username})',
-                                    'tier': tier,
-                                    'tier_label': label,
                                     'scraped_at': datetime.now().isoformat()
                                 }
                                 articles_found.append(article)
@@ -1102,8 +1011,6 @@ class PLNewsScraper:
                                     'summary': entry.get('summary', title)[:300],
                                     'text': entry.get('summary', title),
                                     'source': f'Twitter (@{username})',
-                                    'tier': tier,
-                                    'tier_label': label,
                                     'scraped_at': datetime.now().isoformat()
                                 }
                                 articles_found.append(article)
@@ -1120,8 +1027,6 @@ class PLNewsScraper:
                     'summary': f'@{username} is a reliable source for Premier League news. Visit Twitter for latest updates.',
                     'text': f'Twitter account @{username} - reliable Premier League source',
                     'source': f'Twitter (@{username})',
-                    'tier': tier,
-                    'tier_label': label,
                     'scraped_at': datetime.now().isoformat()
                 }
                 articles_found.append(article)
@@ -1162,8 +1067,6 @@ class PLNewsScraper:
                         'summary': f"Detailed statistics for {team_name} in the Premier League",
                         'text': f"Statistical analysis and data for {team_name}",
                         'source': 'FBref',
-                        'tier': 2,
-                        'tier_label': 'Tier 2 - Reliable',
                         'scraped_at': datetime.now().isoformat()
                     }
                     articles_found.append(article)
@@ -1201,8 +1104,6 @@ class PLNewsScraper:
                         'summary': f"Expected goals (xG) statistics for {team_name}",
                         'text': f"Advanced metrics and xG data for {team_name} in the Premier League",
                         'source': 'Understat',
-                        'tier': 2,
-                        'tier_label': 'Tier 2 - Reliable',
                         'scraped_at': datetime.now().isoformat()
                     }
                     articles_found.append(article)
@@ -1217,56 +1118,65 @@ class PLNewsScraper:
     
     def scrape_all(self, articles_per_source=10):
         """
-        Scrape from ALL 20+ available sources across the internet
+        Scrape from ALL 30+ available sources across the internet - MAXIMUM COVERAGE
         """
         print('='*80)
-        print('COMPREHENSIVE PREMIER LEAGUE NEWS SCRAPER')
-        print('Scraping from 20+ sources across the internet')
+        print('🚀 COMPREHENSIVE PREMIER LEAGUE NEWS SCRAPER - MAXIMUM MODE')
+        print('Scraping from 30+ sources across the entire internet')
         print('='*80)
         print(f'Target: {articles_per_source} articles per source\n')
         
         sources = [
-            # Tier 1 - Official/Top Sources
+            # Tier 1: Official/Premium Sources (BBC, Reuters, Official PL)
             ('BBC Sport', lambda: self.scrape_bbc_sport(articles_per_source)),
             ('Sky Sports', lambda: self.scrape_sky_sports(articles_per_source)),
+            ('BT Sport', lambda: self.scrape_bt_sport(articles_per_source)),
+            ('beIN Sports', lambda: self.scrape_bein_sports(articles_per_source)),
             
-            # Google News - Mixed Sources (will auto-classify by original source)
-            ('Google News (Mixed)', lambda: self.scrape_google_news(articles_per_source * 2)),
-            
-            # Tier 2 - Reliable Outlets & Twitter Experts
+            # Tier 2: Reliable Outlets & Quality Journalism
             ('The Guardian', lambda: self.scrape_guardian_football(articles_per_source)),
-            ('ESPN', lambda: self.scrape_espn_football(articles_per_source)),
+            ('The Telegraph', lambda: self.scrape_telegraph(articles_per_source)),
             ('The Independent', lambda: self.scrape_independent(articles_per_source)),
+            ('ESPN', lambda: self.scrape_espn_football(articles_per_source)),
+            ('Goal.com', lambda: self.scrape_goal_com(articles_per_source)),
+            ('90min', lambda: self.scrape_90min(articles_per_source)),
             ('TalkSport', lambda: self.scrape_talksport(articles_per_source)),
-            ('Twitter: Ben Crellin (Fixtures)', lambda: self.scrape_twitter_ben_crellin(articles_per_source)),
-            ('Twitter: Fabrizio Romano (Transfers)', lambda: self.scrape_twitter_fabrizio(articles_per_source)),
-            ('Twitter: David Ornstein (The Athletic)', lambda: self.scrape_twitter_ornstein(articles_per_source)),
             
-            # Tier 3 - Tabloids/Entertainment
+            # Tier 3: Tabloids/Entertainment/Sensational
             ('Daily Mail', lambda: self.scrape_dailymail_football(articles_per_source)),
+            ('The Sun', lambda: self.scrape_the_sun(articles_per_source)),
             ('Mirror', lambda: self.scrape_mirror(articles_per_source)),
             ('Express', lambda: self.scrape_express(articles_per_source)),
             ('Football.London', lambda: self.scrape_football_london(articles_per_source)),
-            ('Twitter: Underdog Soccer', lambda: self.scrape_twitter_underdog(articles_per_source)),
-            
-            # Tier 4 - Social Media & Community
             ('GiveMeSport', lambda: self.scrape_givemesport(articles_per_source)),
-            ('Reddit (ALL PL Subreddits)', lambda: self.scrape_reddit_comprehensive(articles_per_source * 2)),
+            
+            # Tier 4: Social Media & Community Sources
+            ('Google News (Mixed)', lambda: self.scrape_google_news(articles_per_source * 3)),
+            ('Reddit (ALL PL Subreddits)', lambda: self.scrape_reddit_comprehensive(articles_per_source * 3)),
+            ('Twitter: Premier League News', lambda: self.scrape_twitter_search('Premier League', articles_per_source)),
+            ('Twitter: Transfer News', lambda: self.scrape_twitter_search('Premier League transfer', articles_per_source)),
+            ('Twitter: Match Reports', lambda: self.scrape_twitter_search('Premier League match report', articles_per_source)),
+            ('Facebook: PL Pages', lambda: self.scrape_facebook_pages(articles_per_source)),
+            
+            # Additional specialized sources
+            ('Understat (Analytics)', lambda: self.scrape_understat(articles_per_source)),
         ]
         
         for idx, (source_name, scrape_func) in enumerate(sources, 1):
             print(f'\n[{idx}/{len(sources)}] {source_name}')
             try:
                 scrape_func()
-                time.sleep(2)  # Be polite to servers
+                time.sleep(1.5)  # Slightly faster scraping
             except Exception as e:
                 print(f"❌ Failed to scrape {source_name}: {e}")
                 continue
         
         print(f'\n{"="*80}')
-        print(f'✅ SCRAPING COMPLETE')
+        print(f'✅ SCRAPING COMPLETE - MAXIMUM MODE')
         print(f'Total articles scraped: {len(self.articles)}')
         print(f'Sources accessed: {len(sources)}')
+        print(f'Average per source: {len(self.articles)/len(sources):.1f}')
+        print('='*80)
         print('='*80)
         
         return self.articles
@@ -1293,8 +1203,6 @@ class PLNewsScraper:
         # Print summary
         print(f'\nDistribution by source:')
         print(df['source'].value_counts())
-        print(f'\nDistribution by tier:')
-        print(df['tier'].value_counts().sort_index())
         
         return filepath
     
@@ -1326,8 +1234,8 @@ def main():
     
     scraper = PLNewsScraper()
     
-    # Scrape articles from ALL sources - INCREASED TO 30 per source for better training data
-    articles = scraper.scrape_all(articles_per_source=30)
+    # Scrape articles from ALL sources - INCREASED TO 50 per source for MAXIMUM training data
+    articles = scraper.scrape_all(articles_per_source=50)
     
     if articles:
         # Save to both formats

@@ -20,6 +20,10 @@ Full-stack web application serving all 4 ML models through a FastAPI backend and
 
 **Webapp Repository**: [github.com/AtfastrSlushyMaker/the-12th-player](https://github.com/AtfastrSlushyMaker/the-12th-player)
 
+**Browser Extension**: [PL News Credibility Checker](https://github.com/Rzouga01/pl-news-credibility-extension) - Chrome/Firefox extension for detecting credible Premier League news
+
+**Mobile App**: [The 12th Player Mobile](https://github.com/ezer2002/The-12th-Player-Mobile-App) - Mobile application for Premier League predictions
+
 **Architecture**:
 - **Backend**: FastAPI on Render (loads 9 exported models)
 - **Frontend**: React + TypeScript + Tailwind CSS
